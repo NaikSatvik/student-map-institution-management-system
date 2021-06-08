@@ -1,9 +1,0 @@
-// 
-// _layouts.scss
-// 
-
-body[data-layout-size="boxed"]{
-    .container-fluid, .navbar-header {
-        max-width: $boxed-layout-width;
-    }
-}
