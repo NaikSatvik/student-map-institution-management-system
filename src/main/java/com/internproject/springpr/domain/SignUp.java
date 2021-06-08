@@ -11,7 +11,7 @@ public class SignUp {
     private String username;
     private String mailid;
     private String pass;
-
+    // This is a comment
     public SignUp() {
 
     }
