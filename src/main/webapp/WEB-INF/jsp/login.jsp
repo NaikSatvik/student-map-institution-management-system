@@ -47,35 +47,29 @@
       <form action="/login" method="POST">
         <img class="mb-4" src="/assets/images/gnu_logo.png" alt="" width="100" height="100"><br>
         <h1 class="h3 mb-3 fw-normal">You Are</h1>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="student" onclick="text(0)">
-          <label class="form-check-label" for="inlineRadio1">Student</label>
+        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+          <input type="radio" class="btn-check" name="role" id="btnradio0" autocomplete="off" value="admin">
+          <label class="btn btn-outline-primary" for="btnradio0">Admin</label>
+
+          <input type="radio" class="btn-check" name="role" id="btnradio1" autocomplete="off" value="student">
+          <label class="btn btn-outline-primary" for="btnradio1">Student</label>
+
+          <input type="radio" class="btn-check" name="role" id="btnradio2" autocomplete="off" value="faculty">
+          <label class="btn btn-outline-primary" for="btnradio2">Faculty</label>
+
+          <input type="radio" class="btn-check" name="role" id="btnradio3" autocomplete="off" value="guardian">
+          <label class="btn btn-outline-primary" for="btnradio3">Guardian</label>
         </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="faculty" onclick="text(1)" checked>
-          <label class="form-check-label" for="inlineRadio2">Faculty</label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="guardian" onclick="text(2)">
-          <label class="form-check-label" for="inlineRadio2">Guardian</label>
-        </div>
+        <br><br>
 
         <h1 class="h3 mb-3 fw-normal">Please Login</h1>
         <div class="form-floating" id="email">
-          <input name="stuEmail" type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+          <input name="mail" type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
           <label for="floatingInput">Email Address</label>
         </div>
         <div class="form-floating" id="pass">
-          <input name="stuPass" type="password" class="form-control" id="floatingPassword" placeholder="Password">
+          <input name="pass" type="password" class="form-control" id="floatingPassword" placeholder="Password">
           <label for="floatingPassword">Password</label>
-        </div>
-        <div class="form-floating" id="sem">  
-          <input name="stuSem" type="text" class="form-control" id="floatingPassword" placeholder="Current Semester">
-          <label for="floatingPassword">Semester</label>
-        </div>
-        <div class="form-floating" id="stuname">
-          <input name="stuName" type="email" class="form-control" id="floatingPassword" placeholder="Student Name">
-          <label for="floatingPassword">Student Email Address</label>
         </div>
         <br>
         <button class="w-100 btn btn-lg btn-primary" type="submit">Login</button><br><br>

@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface SignUpRepository extends JpaRepository<SignUp,Long> {
     SignUp findByMailid(String mail);
+    SignUp findByRoleAndMailidAndPass(String role,String mail,String pass);
 }

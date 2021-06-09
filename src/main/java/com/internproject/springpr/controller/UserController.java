@@ -2,12 +2,9 @@ package com.internproject.springpr.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
-import com.internproject.springpr.domain.Faculty;
-import com.internproject.springpr.domain.Guardian;
+
 import com.internproject.springpr.domain.SignUp;
-import com.internproject.springpr.domain.User;
 import com.internproject.springpr.repository.FacultyRepository;
-import com.internproject.springpr.repository.GuardianRepository;
 import com.internproject.springpr.repository.SignUpRepository;
 import com.internproject.springpr.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,9 +23,6 @@ public class UserController {
 
     @Autowired
     private FacultyRepository facRepo;
-
-    @Autowired
-    private GuardianRepository gurRepo;
 
     @Autowired
     private SignUpRepository signupRepo;
@@ -69,52 +63,30 @@ public class UserController {
     }
 
     @RequestMapping("/login")
-    public String authenticateUser(@RequestParam("inlineRadioOptions") String inlineRadioOptions,@RequestParam("stuEmail") String stuEmail,@RequestParam("stuPass") String stuPass,@RequestParam("stuSem") String stuSem,@RequestParam("stuName") String stuName,Model model) {
-        User u = null;
-        Faculty f = null;
-        Guardian g = null;
-        String x = inlineRadioOptions;
-        System.out.println(inlineRadioOptions);
-        if (x.equals("student")) {
-            try {
-                u = userRepo.findByStuEmailAndStuPassAndStuSem(stuEmail,stuPass,stuSem);
-    
-            } catch (Exception e) {
-                System.out.println("User Not Found !!");
+    public String authenticateUser(@RequestParam("role") String role,@RequestParam("mail") String mail,@RequestParam("pass") String pass,Model model) {
+        String x = role;
+        System.out.println(role);
+        if (x.equals("admin")) {
+            signupRepo.findByRoleAndMailidAndPass(role, mail, pass);
+            return "indexAdmin";
+
+        } else if (x.equals("student")) {
+            if (signupRepo.findByRoleAndMailidAndPass(role, mail, pass) != null) {
+                return "indexStu";
+            } else {
+                return "login";
             }
-            if(u!=null) {   
-                model.addAttribute("stuEmail", stuEmail);
-                return "index";
-            }
-            model.addAttribute("error", "Oops!! Student Not Found. Try to login again with correct credentials.");
-            return "login";
-        }
-        else if (x.equals("faculty")) {
-            try {
-                f = facRepo.findByFacEmailAndFacPass(stuEmail, stuPass);
-            } catch (Exception e) {
-                System.out.println("Faculty Not Found !!");
-            }
-            if(f!=null) {
-                model.addAttribute("stuEmail", stuEmail);
+        } else if (x.equals("faculty")) {
+            if (signupRepo.findByRoleAndMailidAndPass(role, mail, pass) != null) {
                 return "indexFac";
+            } else {
+                return "login";
             }
-            model.addAttribute("error", "Oops!! Faculty Not Found. Try to login again with correct credentials.");
+        } else if (x.equals("guardian")) {
+            
+        } else {
             return "login";
-        }
-        else if (x.equals("guardian")) {
-            try {
-                g = gurRepo.findByGurEmailAndGurPassAndGurStudentmail(stuEmail, stuPass, stuName);
-            } catch (Exception e) {
-                System.out.println("Guardian Not Found !!");
-            }
-            if(g!=null) {
-                model.addAttribute("stuEmail", stuEmail);
-                return "index";
-            }
-            model.addAttribute("error", "Oops!! Guardian Not Found. Try to login again with correct credentials.");
-            return "login";
-        }
+        } 
         return "login";
     }
 
