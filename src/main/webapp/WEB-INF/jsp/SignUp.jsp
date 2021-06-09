@@ -40,21 +40,17 @@
             <form action="/insertdata-signup" method="POST">
                 <img class="mb-4" src="/assets/images/gnu_logo.png" alt="" width="100" height="100"><br>
                 <h1 class="h3 mb-3 fw-normal">SignUp As</h1>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="role" id="inlineRadio1"
-                        value="student" onclick="text(0)">
-                    <label class="form-check-label" for="inlineRadio1">Student</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="role" id="inlineRadio2"
-                        value="faculty" onclick="text(1)" checked>
-                    <label class="form-check-label" for="inlineRadio2">Faculty</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="role" id="inlineRadio2"
-                        value="guardian" onclick="text(2)">
-                    <label class="form-check-label" for="inlineRadio2">Guardian</label>
-                </div>
+                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check" name="role" id="btnradio1" autocomplete="off" value="student">
+                    <label class="btn btn-outline-primary" for="btnradio1">Student</label>
+          
+                    <input type="radio" class="btn-check" name="role" id="btnradio2" autocomplete="off" value="faculty">
+                    <label class="btn btn-outline-primary" for="btnradio2">Faculty</label>
+          
+                    <input type="radio" class="btn-check" name="role" id="btnradio3" autocomplete="off" value="guardian">
+                    <label class="btn btn-outline-primary" for="btnradio3">Guardian</label>
+                  </div>
+                  <br><br>
                 <!-- main fields -->
                 <h1 class="h3 mb-3 fw-normal">Please SignUp</h1>
                 <div class="form-floating" id="stuname">
@@ -80,14 +76,6 @@
                 <button class="w-100 btn btn-lg btn-primary" type="submit">Sign Up</button><br><br>
                 <a href="/index" class="link-primary">Already have an account? Login here</a>
             </form>
-
-            <c:if test="${not empty successmsg}">
-                <div>
-                    <h2>
-                        <script>alert("${successmsg}")</script>
-                    </h2>
-                </div>
-            </c:if>
         </main>
         </script>
     </body>

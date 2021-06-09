@@ -2,7 +2,6 @@ package com.internproject.springpr.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
-
 import com.internproject.springpr.domain.SignUp;
 import com.internproject.springpr.repository.FacultyRepository;
 import com.internproject.springpr.repository.SignUpRepository;
@@ -16,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Controller
-@SessionAttributes("stuEmail")
+@SessionAttributes("mail")
 public class UserController {
     @Autowired
     private UserRepository userRepo;
@@ -51,9 +50,10 @@ public class UserController {
             s = signupRepo.findByMailid(mailid);
             if (s == null) {
                 signupRepo.save(signup);
-                model.addAttribute("error", "You have been signed up successfully !!");
+                model.addAttribute("error", "You have been signed up Successfully !!");
             } else {
                 model.addAttribute("error", "Email-ID already exists. Try again with different email-id.");
+                return "SignUp";
             }
             return "login";
         } else {
@@ -66,27 +66,45 @@ public class UserController {
     public String authenticateUser(@RequestParam("role") String role,@RequestParam("mail") String mail,@RequestParam("pass") String pass,Model model) {
         String x = role;
         System.out.println(role);
-        if (x.equals("admin")) {
-            signupRepo.findByRoleAndMailidAndPass(role, mail, pass);
-            return "indexAdmin";
-
-        } else if (x.equals("student")) {
-            if (signupRepo.findByRoleAndMailidAndPass(role, mail, pass) != null) {
-                return "indexStu";
-            } else {
-                return "login";
-            }
-        } else if (x.equals("faculty")) {
-            if (signupRepo.findByRoleAndMailidAndPass(role, mail, pass) != null) {
-                return "indexFac";
-            } else {
-                return "login";
-            }
-        } else if (x.equals("guardian")) {
-            
+        if (x == null) {
+            model.addAttribute("error", "Please select your role (i.e. You Are)");
         } else {
-            return "login";
-        } 
+            if (x.equals("admin")) {
+                if (signupRepo.findByRoleAndMailidAndPass(role, mail, pass) != null) {
+                    model.addAttribute("mail", mail);
+                    return "indexAdmin";
+                } else {
+                    model.addAttribute("error", "You have entered incorrect credentials. Please try again.");
+                    return "login";
+                }
+            } else if (x.equals("student")) {
+                if (signupRepo.findByRoleAndMailidAndPass(role, mail, pass) != null) {
+                    model.addAttribute("mail", mail);
+                    return "indexStu";
+                } else {
+                    model.addAttribute("error", "You have entered incorrect credentials. Please try again.");
+                    return "login";
+                }
+            } else if (x.equals("faculty")) {
+                if (signupRepo.findByRoleAndMailidAndPass(role, mail, pass) != null) {
+                    model.addAttribute("mail", mail);
+                    return "indexFac";
+                } else {
+                    model.addAttribute("error", "You have entered incorrect credentials. Please try again.");
+                    return "login";
+                }
+            } else if (x.equals("guardian")) {
+                if (signupRepo.findByRoleAndMailidAndPass(role, mail, pass) != null) {
+                    model.addAttribute("mail", mail);
+                    return "indexGur";
+                } else {
+                    model.addAttribute("error", "You have entered incorrect credentials. Please try again.");
+                    return "login";
+                }
+            } else {
+                return "login";
+            }
+        }
         return "login";
     }
 
