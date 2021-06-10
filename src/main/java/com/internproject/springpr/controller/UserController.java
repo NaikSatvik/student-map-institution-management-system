@@ -2,6 +2,8 @@ package com.internproject.springpr.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
+
+import com.internproject.springpr.domain.Faculty;
 import com.internproject.springpr.domain.SignUp;
 import com.internproject.springpr.repository.FacultyRepository;
 import com.internproject.springpr.repository.SignUpRepository;
@@ -79,6 +81,7 @@ public class UserController {
                 }
             } else if (x.equals("student")) {
                 if (signupRepo.findByRoleAndMailidAndPass(role, mail, pass) != null) {
+
                     model.addAttribute("mail", mail);
                     return "indexStu";
                 } else {
@@ -87,8 +90,14 @@ public class UserController {
                 }
             } else if (x.equals("faculty")) {
                 if (signupRepo.findByRoleAndMailidAndPass(role, mail, pass) != null) {
-                    model.addAttribute("mail", mail);
-                    return "indexFac";
+                    System.out.println(facRepo.count(mail));
+                    if (facRepo.count(mail) == null) {
+                        model.addAttribute("mail", mail);
+                        return "FacProfile";
+                    } else {
+                        model.addAttribute("mail", mail);
+                        return "indexFac";
+                    }
                 } else {
                     model.addAttribute("error", "You have entered incorrect credentials. Please try again.");
                     return "login";
@@ -115,6 +124,13 @@ public class UserController {
         return "login";
     }
 
+    @RequestMapping("/save-FacProfile")
+    public String saveFacProfile(Model model, Faculty faculty) {
+        facRepo.save(faculty);
+        model.addAttribute("error", "You have completed your profile. Kindly Login Again.");
+        return "login";
+    }
+
     @RequestMapping("/goto-yourstudents")
     public String getallstu(Model model) {
         model.addAttribute("stubysem", userRepo.findAll());
@@ -129,15 +145,14 @@ public class UserController {
     }
 
     @RequestMapping("/profile")
-    public String redirectToProfile(@ModelAttribute("stuEmail") String stuEmail,Model model) {
-        // System.out.println(stuEmail);
-        model.addAttribute("facprofile", facRepo.findByFacEmail(stuEmail));
-        return "FacProfile";
+    public String redirectToProfile(@ModelAttribute("mail") String mail,Model model) {
+        model.addAttribute("facprofile", facRepo.findByFacEmail(mail));
+        return "FacProfileDash";
     }
 
     @RequestMapping("/edit-profile")
-    public String redirectToEditProfile(@ModelAttribute("stuEmail") String stuEmail,Model model) {
-        model.addAttribute("facprofile", facRepo.findByFacEmail(stuEmail));
+    public String redirectToEditProfile(@ModelAttribute("mail") String mail,Model model) {
+        model.addAttribute("facprofile", facRepo.findByFacEmail(mail));
         return "EditFacProfile";
     }
 

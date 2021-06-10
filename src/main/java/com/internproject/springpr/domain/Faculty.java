@@ -16,7 +16,6 @@ public class Faculty {
     private String facLname;
     private String facMobile;
     private String facEmail;
-    private String facPass;
     private String facAddress;
     private String facPincode;
     private String facDesig;
@@ -28,13 +27,12 @@ public class Faculty {
 
     }
 
-    public Faculty (String facFname,String facMname,String facLname,String facMobile,String facEmail,String facPass,String facAddress,String facPincode,String facDesig,String facQuali,String facExp,String facSpeci) {
+    public Faculty (String facFname,String facMname,String facLname,String facMobile,String facEmail,String facAddress,String facPincode,String facDesig,String facQuali,String facExp,String facSpeci) {
         this.facFname = facFname;
         this.facMname = facMname;
         this.facLname = facLname;
         this.facMobile = facMobile;
         this.facEmail = facEmail;
-        this.facPass = facPass;
         this.facAddress = facAddress;
         this.facPincode = facPincode;
         this.facDesig = facDesig;
@@ -89,14 +87,6 @@ public class Faculty {
 
     public void setFacEmail(String facEmail) {
         this.facEmail = facEmail;
-    }
-
-    public String getFacPass() {
-        return this.facPass;
-    }
-
-    public void setFacPass(String facPass) {
-        this.facPass = facPass;
     }
 
     public String getFacAddress() {

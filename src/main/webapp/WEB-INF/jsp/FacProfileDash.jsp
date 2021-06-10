@@ -109,7 +109,8 @@
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-right">
                                     <!-- item-->
-                                    <!-- <a class="dropdown-item" href="/profile"><i class="mdi mdi-face-profile font-size-16 align-middle mr-1"></i> Profile</a> -->
+                                    <a class="dropdown-item" href="/profile"><i
+                                            class="mdi mdi-face-profile font-size-16 align-middle mr-1"></i> Profile</a>
                                     <!-- <a class="dropdown-item" href="#"><i class="mdi mdi-credit-card-outline font-size-16 align-middle mr-1"></i> Billing</a> -->
                                     <!-- <a class="dropdown-item" href="#"><i class="mdi mdi-account-settings font-size-16 align-middle mr-1"></i> Settings</a> -->
                                     <!-- <a class="dropdown-item" href="#"><i class="mdi mdi-lock font-size-16 align-middle mr-1"></i> Lock screen</a> -->
@@ -139,6 +140,20 @@
                                         <span>Your Profile</span>
                                     </a>
                                 </li>
+
+                                <li>
+                                    <a href="/edit-profile" class=" waves-effect">
+                                        <i class="mdi mdi-calendar-month"></i>
+                                        <span>Edit Profile</span>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="/indexFac" class=" waves-effect">
+                                        <i class="mdi mdi-calendar-month"></i>
+                                        <span>Go To Dashboard</span>
+                                    </a>
+                                </li>
                             </ul>
 
                             <div class="sidebar-section mt-5 mb-3">
@@ -161,7 +176,7 @@
                             <!-- start page title -->
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <h1>Complete Your Profile</h1>
+                                    <h1>Your Profile</h1>
                                 </div>
                             </div>
                             <!-- end page title -->
@@ -170,81 +185,76 @@
                                 <div class="col-lg-6">
                                     <div class="card">
                                         <div class="card-body">
-                                            <form class="custom-validation" action="/save-FacProfile">
-                                                <div class="form-group">
-                                                    <label>First Name</label>
-                                                    <input type="text" class="form-control" name="facFname" />
-                                                </div>
+                                            <c:forEach var="s" items="${facprofile}">
+                                                <form class="custom-validation" action="#">
+                                                    <div class="form-group">
+                                                        <label>First Name</label>
+                                                        <input type="text" class="form-control" value="${s.facFname}" readonly/>
+                                                    </div>
 
-                                                <div class="form-group">
-                                                    <label>Middle Name</label>
-                                                    <div>
-                                                        <input type="text" class="form-control" name="facMname" />
+                                                    <div class="form-group">
+                                                        <label>Middle Name</label>
+                                                        <div>
+                                                            <input type="text" class="form-control" value="${s.facMname}" readonly/>
+                                                        </div>
                                                     </div>
-                                                </div>
 
-                                                <div class="form-group">
-                                                    <label>Last Name</label>
-                                                    <div>
-                                                        <input type="text" class="form-control" name="facLname" />
+                                                    <div class="form-group">
+                                                        <label>Last Name</label>
+                                                        <div>
+                                                            <input type="text" class="form-control" value="${s.facLname}" readonly/>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Contact No.</label>
-                                                    <div>
-                                                        <input type="text" class="form-control" name="facMobile" />
+                                                    <div class="form-group">
+                                                        <label>Contact No.</label>
+                                                        <div>
+                                                            <input type="text" class="form-control" value="${s.facMobile}" readonly/>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Email ID</label>
-                                                    <div>
-                                                        <input type="text" class="form-control" name="facEmail" value="${sessionScope.mail}" readonly />
+                                                    <div class="form-group">
+                                                        <label>Email ID</label>
+                                                        <div>
+                                                            <input type="text" class="form-control" name="facEmail" value="${sessionScope.mail}" readonly />
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Address</label>
-                                                    <div>
-                                                        <textarea required class="form-control" rows="5" name="facAddress"></textarea>
+                                                    <div class="form-group">
+                                                        <label>Address</label>
+                                                        <div>
+                                                            <textarea required class="form-control" rows="5">${s.facAddress}</textarea>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Pincode</label>
-                                                    <div>
-                                                        <input type="text" class="form-control" name="facPincode" />
+                                                    <div class="form-group">
+                                                        <label>Pincode</label>
+                                                        <div>
+                                                            <input type="text" class="form-control" value="${s.facPincode}" readonly/>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Designation</label>
-                                                    <div>
-                                                        <input type="text" class="form-control" name="facDesig" />
+                                                    <div class="form-group">
+                                                        <label>Designation</label>
+                                                        <div>
+                                                            <input type="text" class="form-control" value="${s.facDesig}" readonly/>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Experience</label>
-                                                    <div>
-                                                        <input type="text" class="form-control" name="facExp" />
+                                                    <div class="form-group">
+                                                        <label>Experience</label>
+                                                        <div>
+                                                            <input type="text" class="form-control" value="${s.facExp}" readonly/>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Qualification</label>
-                                                    <div>
-                                                        <input type="text" class="form-control" name="facQuali" />
+                                                    <div class="form-group">
+                                                        <label>Qualification</label>
+                                                        <div>
+                                                            <input type="text" class="form-control" value="${s.facQuali}" readonly/>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Specialization</label>
-                                                    <div>
-                                                        <input type="text" class="form-control" name="facSpeci" />
+                                                    <div class="form-group">
+                                                        <label>Specialization</label>
+                                                        <div>
+                                                            <input type="text" class="form-control" value="${s.facSpeci}" readonly/>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="form-group mb-0">
-                                                    <div>
-                                                        <button type="submit" class="btn btn-primary waves-effect waves-light mr-1">
-                                                            Save
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </form>
+                                                </form>
+                                            </c:forEach>
                                         </div>
                                     </div>
                                 </div>

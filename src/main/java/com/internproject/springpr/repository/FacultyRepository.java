@@ -9,8 +9,10 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface FacultyRepository extends JpaRepository<Faculty,Long> {
-    Faculty findByFacEmailAndFacPass(String facEmail,String facPass);
     List<Faculty> findByFacEmail(String facEmail);
+
+    @Query("SELECT id from Faculty WHERE facEmail = :mail")
+    public String count(@Param("mail") String mail);
     
     @Modifying
     @Query("UPDATE Faculty f SET f.facMobile = :facMobile, f.facAddress = :facAddress, f.facPincode = :facPincode, f.facExp = :facExp, f.facQuali = :facQuali, f.facSpeci = :facSpeci WHERE f.facEmail = :facEmail")
