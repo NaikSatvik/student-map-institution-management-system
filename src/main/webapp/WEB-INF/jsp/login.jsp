@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="assets/images/graduateicon.ico">
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sign-in/">
     <link href="/assets/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/login.css">
@@ -45,7 +46,7 @@
         <div><h2><script>alert("${error}")</script></h2></div>
       </c:if>
       <form action="/login" method="POST">
-        <img class="mb-4" src="/assets/images/gnu_logo.png" alt="" width="100" height="100"><br>
+        <img class="mb-4" src="/assets/images/logo-sm-light.png" alt="" width="80" height="80"><br>
         <h1 class="h3 mb-3 fw-normal">You Are</h1>
         <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
           <input type="radio" class="btn-check" name="role" id="btnradio0" autocomplete="off" value="admin">

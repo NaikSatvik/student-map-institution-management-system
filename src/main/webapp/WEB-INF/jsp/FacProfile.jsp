@@ -1,5 +1,5 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
         <!doctype html>
         <html lang="en">
 
@@ -134,9 +134,9 @@
                                 <!-- <li class="menu-title">Menu</li> -->
 
                                 <li>
-                                    <a href="/profile" class=" waves-effect">
+                                    <a href="#" class=" waves-effect">
                                         <i class="mdi mdi-calendar-month"></i>
-                                        <span>Your Profile</span>
+                                        <span style="color: #FCFBFC;">Your Profile</span>
                                     </a>
                                 </li>
                             </ul>

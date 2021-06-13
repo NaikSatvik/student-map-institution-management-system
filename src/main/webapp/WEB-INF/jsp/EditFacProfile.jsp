@@ -166,7 +166,7 @@
                         <!-- start page title -->
                         <div class="row">
                             <div class="col-lg-6">
-                                <h1>Faculty Profile</h1>
+                                <h1>Edit Your Profile</h1>
                             </div>
                         </div>     
                         <!-- end page title -->

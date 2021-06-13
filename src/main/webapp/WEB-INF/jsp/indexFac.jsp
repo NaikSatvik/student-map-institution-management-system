@@ -123,7 +123,7 @@
                             <!-- <li class="menu-title">Menu</li> -->
 
                             <li>
-                                <a href="/indexFac" class="waves-effect">
+                                <a style="color: #FCFBFC;" href="/indexFac" class="waves-effect">
                                     <i class="mdi mdi-view-dashboard"></i><span class="badge badge-pill badge-success float-right"></span>
                                     <span>Faculty Dashboard</span>
                                 </a>
@@ -132,7 +132,7 @@
                             <li>
                                 <a href="/goto-yourstudents" class=" waves-effect">
                                     <i class="mdi mdi-calendar-month"></i>
-                                    <span>Your Students</span>
+                                    <span>Student Details</span>
                                 </a>
                             </li>
 

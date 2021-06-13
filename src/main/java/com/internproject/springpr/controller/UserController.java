@@ -162,4 +162,12 @@ public class UserController {
         facRepo.update(facEmail, facMobile, facAddress, facPincode, facExp, facQuali, facSpeci);
         return "indexFac";
     }
+
+    @Transactional
+    @RequestMapping("/update-sem")
+    public String updatestusem(@RequestParam("stuEmail") String stuEmail,@RequestParam("stuSem") String stuSem,Model model) {
+        userRepo.update(stuEmail, stuSem);
+        model.addAttribute("stubysem", userRepo.findAll());
+        return "YourStudents";
+    }
 }

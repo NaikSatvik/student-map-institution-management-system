@@ -21,6 +21,20 @@
         <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
         <!-- App Css-->
         <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" />
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+        <!-- Datatables CSS -->
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" type="text/css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.1.9/css/fixedHeader.dataTables.min.css" type="text/css">
+        <!-- DataTables JS -->
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/fixedheader/3.1.9/js/dataTables.fixedHeader.min.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.25/datatables.min.css"/>
+ 
+        <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.25/datatables.min.js"></script>
     </head>
     <body data-sidebar="dark">
         <!-- Begin page -->
@@ -111,7 +125,65 @@
                     </div>
                 </div>
             </header>
-
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">  
+                <div class="modal-dialog modal-lg">  
+                  <div class="modal-content">  
+                    <div class="modal-header">  
+                      <!-- <button type="button" class="close" data-dismiss="modal">×</button>   -->
+                      <h4 class="modal-title">Edit Student</h4>
+                    </div>  
+                    <div class="modal-body">  
+                      <!-- <p>This is a large modal.</p>   -->
+                      <form class="custom-validation" action="/update-sem" method="POST">
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" class="form-control" id="name" readonly/>
+                        </div>
+    
+                        <div class="form-group">
+                            <div>
+                                <label>Enrolment No.</label>
+                                <input type="text" class="form-control" id="enroll" readonly/>
+                            </div>
+                        </div>
+    
+                        <div class="form-group">
+                            <label>Semester</label>
+                            <div>
+                                <input type="text" class="form-control" id="sem" name="stuSem"/>
+                            </div>
+                        </div>          
+    
+                        <div class="form-group">
+                            <label>Email-ID</label>
+                            <div>
+                                <input type="text" class="form-control" id="mail" name="stuEmail" readonly/>
+                            </div>
+                        </div>
+    
+                        <div class="form-group">
+                            <label>Contact</label>
+                            <div>
+                                <input type="text" class="form-control" id="contact" readonly/>
+                            </div>
+                        </div>
+    
+                        <div class="form-group mb-0">
+                            <div>
+                                <button type="submit" class="btn btn-primary waves-effect waves-light mr-1">
+                                    UPDATE
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    </div>  
+                    <div class="modal-footer">  
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>  
+                    </div>  
+                  </div>  
+                </div>  
+            </div>
+              
             <!-- ========== Left Sidebar Start ========== -->
             <div class="vertical-menu">
 
@@ -133,7 +205,7 @@
                             <li>
                                 <a href="/goto-yourstudents" class=" waves-effect">
                                     <i class="mdi mdi-calendar-month"></i>
-                                    <span>Student Details</span>
+                                    <span style="color: #FCFBFC;">Student Details</span>
                                 </a>
                             </li>
 
@@ -193,40 +265,23 @@
             <!-- ============================================================== -->
             <!-- Start right Content here -->
             <!-- ============================================================== -->
+            
             <div class="main-content">
-
                 <div class="page-content">
                     <div class="container-fluid">
-
                         <!-- start page title -->
                         <div class="row">
-                            <h1>Total Students in University</h1>
+                            <h1>Select Semester</h1>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6 col-xl-3">
+                                <input type="text" class="form-control" id="filter" placeholder="Search By Semester">
+                            </div>
                         </div>     
                         <!-- end page title -->
 
                         <div class="row"><br></div>
-
-                        <div class="row">
-                            <div class="col-sm-6 col-xl-3">
-                                <form action="/yourstudents" method="POST">
-                                    <select name="stuSem" class="custom-select">
-                                        <option value="0" selected>Find Students By Semester</option>
-                                        <option value="1">I</option>
-                                        <option value="2">II</option>
-                                        <option value="3">III</option>
-                                        <option value="4">IV</option>
-                                        <option value="5">V</option>
-                                        <option value="6">VI</option>
-                                        <option value="7">VII</option>
-                                        <option value="8">VIII</option>
-                                    </select>
-                            </div>
-                            <div class="col-sm-6 col-xl-3">
-                                <button type="submit" class="btn btn-primary mt-3 mt-sm-0">FIND</button>
-                            </div>
-                        </form>
-                        </div>
-                        <!-- end row -->
 
                         <div class="row"><br></div>
 
@@ -234,50 +289,71 @@
                             <div class="col-lg-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h4 class="header-title mb-4">All Students</h4>
+                                        <h4 class="header-title mb-4">Students Details</h4>
+                                        <script>
+                                            $(document).ready(function() {
+                                                (function($) {
+                                                    $("#example tbody").addClass("search");
+                                                    $('#filter').keyup(function() {
+                                                        var rex = new RegExp($(this).val(),'i');
+                                                        $('.search tr').hide();
+
+                                                        $('.search tr').filter(function(i, v) {
+                                                            var $t = $(this).children(":eq("+"2"+")");  //which column reference
+                                                            return rex.test($t.text());
+                                                        }).show();
+                                                    });
+                                                }(jQuery));
+                                            });
+                                        </script>
 
                                         <div class="table-responsive">
-                                            <table class="table table-centered table-nowrap mb-0">
+                                            <table style="overflow: hidden;" class="table table-centered table-nowrap mb-0" id="example" class="display">
                                                 <thead>
                                                     <tr>
-                                                        <th scope="col"  style="width: 50px;">
-                                                            <div class="custom-control custom-checkbox">
-                                                                <input type="checkbox" class="custom-control-input" id="customCheckall">
-                                                                <label class="custom-control-label" for="customCheckall"></label>
-                                                            </div>
-                                                        </th>
-                                                        <th scope="col"  style="width: 60px;"></th>
                                                         <th scope="col">ID & Name</th>
                                                         <th scope="col">Enrolment No.</th>
                                                         <th scope="col">Semester</th>
                                                         <th scope="col">Email ID</th>
-                                                        <th scope="col">Contact No.</th>
+                                                        <th scope="col">Contact</th>
+                                                        <th scope="col">Action</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <c:forEach var="s" items="${stubysem}">
                                                         <tr>
                                                             <td>
-                                                                <div class="custom-control custom-checkbox">
-                                                                    <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                                                    <label class="custom-control-label" for="customCheck1"></label>
-                                                                </div>
+                                                                <p class="nr1" class="mb-1 font-size-12">#${s.id}</p>
+                                                                <h5 class="nr2" class="font-size-15 mb-0">${s.stuFname} ${s.stuLname}</h5>
                                                             </td>
+                                                            <td class="nr3">${s.stuEnroll}</td>
+                                                            <td class="nr4">${s.stuSem}</td>
+                                                            <td class="nr5">${s.stuEmail}</td>
+                                                            <td class="nr6">${s.stuMobile}</td>
                                                             <td>
-                                                                <img src="assets/images/users/avatar-2.jpg" alt="user" class="avatar-xs rounded-circle" />
+                                                                <span class="use-address"><button class="btn btn-outline-success btn-sm" data-toggle="modal" data-target="#exampleModal">Edit</button></span>
                                                             </td>
-                                                            <td>
-                                                                <p class="mb-1 font-size-12">#${s.id}</p>
-                                                                <h5 class="font-size-15 mb-0">${s.stuFname} ${s.stuLname}</h5>
-                                                            </td>
-                                                            <td>${s.stuEnroll}</td>
-                                                            <td>${s.stuSem}</td>
-                                                            <td>${s.stuEmail}</td>
-                                                            <td>${s.stuMobile}</td>
                                                         </tr>
                                                     </c:forEach>
                                                 </tbody>
                                             </table>
+                                            <script>
+                                                $(".use-address").click(function() {
+                                                    var $row = $(this).closest("tr"); // Find the row
+                                                    var $id = $row.find(".nr1").text(); // Find the id
+                                                    var $name = $row.find(".nr2").text();
+                                                    var $enroll = $row.find(".nr3").text();
+                                                    var $sem = $row.find(".nr4").text();
+                                                    var $email = $row.find(".nr5").text();
+                                                    var $mobile = $row.find(".nr6").text();
+
+                                                    $("#name").val($name);
+                                                    $("#enroll").val($enroll); 
+                                                    $("#sem").val($sem);
+                                                    $("#mail").val($email);
+                                                    $("#contact").val($mobile);
+                                                });
+                                            </script>
                                         </div>
                                     </div>
                                 </div>
@@ -285,7 +361,6 @@
                         </div>
 
                         <div class="row">
-                            
                         </div>
                         <!-- end row -->
                         
@@ -329,6 +404,5 @@
         <script src="assets/js/pages/dashboard.init.js"></script>
 
         <script src="assets/js/app.js"></script>
-
     </body>
 </html>
