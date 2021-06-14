@@ -9,10 +9,17 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface UserRepository extends JpaRepository<User,Long> {
-    User findByStuEmailAndStuPassAndStuSem(String stuEmail, String stuPass, String stuSem);
     List<User> findByStuSem(String stuSem);
+    List<User> findByStuEmail(String stuEmail);
     List<User> findAll();
     User findById(String id);
+
+    @Query("SELECT id from User WHERE stuEmail = :mail")
+    public String count(@Param("mail") String mail);
+
+    @Modifying
+    @Query("UPDATE User s SET s.stuMobile = :stuMobile, s.stuAddress = :stuAddress, s.stuPincode = :stuPincode, s.stuHobby = :stuHobby WHERE s.stuEmail = :stuEmail")
+    int update(@Param("stuEmail") String stuEmail, @Param("stuMobile") String stuMobile, @Param("stuAddress") String stuAddress, @Param("stuPincode") String stuPincode, @Param("stuHobby") String stuHobby);
 
     @Modifying
     @Query("UPDATE User u SET u.stuSem = :stuSem WHERE u.stuEmail = :stuEmail")

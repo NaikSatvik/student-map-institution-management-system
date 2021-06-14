@@ -17,7 +17,6 @@ public class User {
     private String stuLname;
     private String stuMobile;
     private String stuEmail;
-    private String stuPass;
     private String stuAddress;
     private String stuPincode;
     private String stuSem;
@@ -27,14 +26,13 @@ public class User {
 
     }
 
-    public User(String stuEnroll, String stuFname, String stuMname, String stuLname, String stuMobile, String stuEmail, String stuPass, String stuAddress, String stuPincode, String stuSem, String stuHobby) {
+    public User(String stuEnroll, String stuFname, String stuMname, String stuLname, String stuMobile, String stuEmail, String stuAddress, String stuPincode, String stuSem, String stuHobby) {
         this.stuEnroll = stuEnroll;
         this.stuFname = stuFname;
         this.stuMname = stuMname;
         this.stuLname = stuLname;
         this.stuMobile = stuMobile;
         this.stuEmail = stuEmail;
-        this.stuPass = stuPass;
         this.stuAddress = stuAddress;
         this.stuPincode = stuPincode;
         this.stuSem = stuSem;
@@ -95,14 +93,6 @@ public class User {
 
     public void setStuEmail(String stuEmail) {
         this.stuEmail = stuEmail;
-    }
-
-    public String getStuPass() {
-        return this.stuPass;
-    }
-
-    public void setStuPass(String stuPass) {
-        this.stuPass = stuPass;
     }
 
     public String getStuAddress() {

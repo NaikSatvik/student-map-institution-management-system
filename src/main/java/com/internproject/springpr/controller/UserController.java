@@ -5,6 +5,7 @@ import javax.transaction.Transactional;
 
 import com.internproject.springpr.domain.Faculty;
 import com.internproject.springpr.domain.SignUp;
+import com.internproject.springpr.domain.User;
 import com.internproject.springpr.repository.FacultyRepository;
 import com.internproject.springpr.repository.SignUpRepository;
 import com.internproject.springpr.repository.UserRepository;
@@ -81,16 +82,20 @@ public class UserController {
                 }
             } else if (x.equals("student")) {
                 if (signupRepo.findByRoleAndMailidAndPass(role, mail, pass) != null) {
-
-                    model.addAttribute("mail", mail);
-                    return "indexStu";
+                    if (userRepo.count(mail) == null) {
+                        model.addAttribute("mail", mail);
+                        return "StuProfile";
+                    } else {
+                        model.addAttribute("mail", mail);
+                        return "indexStu";
+                    }
                 } else {
                     model.addAttribute("error", "You have entered incorrect credentials. Please try again.");
                     return "login";
                 }
             } else if (x.equals("faculty")) {
                 if (signupRepo.findByRoleAndMailidAndPass(role, mail, pass) != null) {
-                    System.out.println(facRepo.count(mail));
+                    //System.out.println(facRepo.count(mail));
                     if (facRepo.count(mail) == null) {
                         model.addAttribute("mail", mail);
                         return "FacProfile";
@@ -131,6 +136,13 @@ public class UserController {
         return "login";
     }
 
+    @RequestMapping("/save-StuProfile")
+    public String saveStuProfile(Model model, User user) {
+        userRepo.save(user);
+        model.addAttribute("error", "You have completed your profile. Kindly Login Again.");
+        return "login";
+    }
+
     @RequestMapping("/goto-yourstudents")
     public String getallstu(Model model) {
         model.addAttribute("stubysem", userRepo.findAll());
@@ -156,11 +168,35 @@ public class UserController {
         return "EditFacProfile";
     }
 
+    @RequestMapping("/sprofile")
+    public String redirectToSProfile(@ModelAttribute("mail") String mail,Model model) {
+        model.addAttribute("StuProfile", userRepo.findByStuEmail(mail));
+        return "StuProfileDash";
+    }
+
+    @RequestMapping("/edit-sprofile")
+    public String redirectToEditSProfile(@ModelAttribute("mail") String mail,Model model) {
+        model.addAttribute("Stuprofile", userRepo.findByStuEmail(mail));
+        return "EditStuProfile";
+    }
+
+    @RequestMapping("/indexStu")
+    public String redirectToindexStu() {
+        return "indexStu";
+    }
+
     @Transactional
     @RequestMapping("/updateFaculty") 
     public String updateFaculty(@RequestParam("facEmail") String facEmail,@RequestParam("facMobile") String facMobile,@RequestParam("facAddress") String facAddress,@RequestParam("facPincode") String facPincode,@RequestParam("facExp") String facExp,@RequestParam("facQuali") String facQuali,@RequestParam("facSpeci") String facSpeci) {
         facRepo.update(facEmail, facMobile, facAddress, facPincode, facExp, facQuali, facSpeci);
         return "indexFac";
+    }
+
+    @Transactional
+    @RequestMapping("/updateStudent")
+    public String updateUser(@RequestParam("stuEmail") String stuEmail,@RequestParam("stuMobile") String stuMobile,@RequestParam("stuAddress") String stuAddress,@RequestParam("stuPincode") String stuPincode,@RequestParam("stuHobby") String stuHobby) {
+        userRepo.update(stuEmail,stuMobile,stuAddress,stuPincode,stuHobby);
+        return "indexStu";
     }
 
     @Transactional
