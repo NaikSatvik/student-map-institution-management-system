@@ -10,7 +10,7 @@
         <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sign-in/">
         <link href="/assets/dist/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="/assets/css/login.css">
-        <title>SignUp Page</title>1
+        <title>SignUp Page</title>
         <style>
             .bd-placeholder-img {
                 font-size: 1.125rem;

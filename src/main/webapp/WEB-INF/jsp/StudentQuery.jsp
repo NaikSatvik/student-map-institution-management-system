@@ -196,35 +196,91 @@
 
                 <div class="page-content">
                     <div class="container-fluid">
-
+            
                         <!-- start page title -->
                         <div class="row">
-                            <h1>Welcome Student</h1>
-
-                        </div>     
+                            <div class="col-lg-6">
+                                <h1>Student Query Form</h1>
+                
+                            </div>
+                        </div>
                         <!-- end page title -->
-
+            
                         <div class="row">
-    
-                        </div>
-                        <!-- end row -->
-
-                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <form class="custom-validation" action="/Student" method="POST">
+                                            <div class="form-group">
+                                                <label>First-Name</label>
+                                                <input type="text" class="form-control" name="stuFname" />
+                                            </div>
+            
+                                            <div class="form-group">
+                                                <label>Middle Name</label>
+                                                <div>
+                                                    <input type="text" class="form-control" name="stuMname" />
+                                                </div>
+                                            </div>
+            
+                                            <div class="form-group">
+                                                <label>Last Name</label>
+                                                <div>
+                                                    <input type="text" class="form-control" name="stuLname" />
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <label>Email</label>
+                                                <div>
+                                                    <input type="text" class="form-control" name="stuEmail" value="${sessionScope.mail}" readonly />
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <label>Semester</label>
+                                                <div>
+                                                    <input type="text" class="form-control" name="stuSem" />
+                                                </div>
+                                            </div>
+            
+                                            <div class="form-group">
+                                                <label>Write Your Query</label>
+                                                <div>
+                                                    <textarea name="stuQuery" required class="form-control" rows="5"></textarea>
+                                                </div>
+                                            </div>
                             
+                                            <div class="form-group mb-0">
+                                                <div>
+                                                    <button type="submit" class="btn btn-primary waves-effect waves-light mr-1">
+                                                        Save
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <!-- end row -->
-
+            
                         <div class="row">
-                            
+            
                         </div>
                         <!-- end row -->
-                        
-
+            
                         <div class="row">
-                            
+            
                         </div>
                         <!-- end row -->
-                        
+            
+            
+                        <div class="row">
+            
+                        </div>
+                        <!-- end row -->
+            
                     </div> <!-- container-fluid -->
                 </div>
                 <!-- End Page-content -->

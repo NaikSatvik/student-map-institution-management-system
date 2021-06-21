@@ -5,9 +5,11 @@ import javax.transaction.Transactional;
 
 import com.internproject.springpr.domain.Faculty;
 import com.internproject.springpr.domain.SignUp;
+import com.internproject.springpr.domain.StudentQuery;
 import com.internproject.springpr.domain.User;
 import com.internproject.springpr.repository.FacultyRepository;
 import com.internproject.springpr.repository.SignUpRepository;
+import com.internproject.springpr.repository.StudentQueryRepository;
 import com.internproject.springpr.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,6 +30,9 @@ public class UserController {
 
     @Autowired
     private SignUpRepository signupRepo;
+
+    @Autowired
+    private StudentQueryRepository stuqueryRepo;
 
     @RequestMapping("/index")
     public String redirectToLogin() {
@@ -205,5 +210,22 @@ public class UserController {
         userRepo.update(stuEmail, stuSem);
         model.addAttribute("stubysem", userRepo.findAll());
         return "YourStudents";
+    }
+
+    // Student Query
+    @RequestMapping("/StudentQuery")
+    public String redirecttoStuQuery() {
+        return "StudentQuery";
+    }
+
+    @RequestMapping("/Student")
+    public String addquery(StudentQuery query) {
+        stuqueryRepo.save(query);
+        return "StudentQuery";
+    }
+
+    @RequestMapping("/UploadGrades")
+    public String redirectToupldGrades() {
+        return "UploadGrades";
     }
 }
