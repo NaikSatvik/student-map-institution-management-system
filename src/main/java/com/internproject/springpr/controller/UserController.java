@@ -8,6 +8,7 @@ import com.internproject.springpr.domain.SignUp;
 import com.internproject.springpr.domain.StudentQuery;
 import com.internproject.springpr.domain.User;
 import com.internproject.springpr.repository.FacultyRepository;
+import com.internproject.springpr.repository.GuardianRepository;
 import com.internproject.springpr.repository.SignUpRepository;
 import com.internproject.springpr.repository.StudentQueryRepository;
 import com.internproject.springpr.repository.UserRepository;
@@ -33,6 +34,9 @@ public class UserController {
 
     @Autowired
     private StudentQueryRepository stuqueryRepo;
+
+    @Autowired
+    private GuardianRepository gurRepo;
 
     @RequestMapping("/index")
     public String redirectToLogin() {
@@ -197,12 +201,12 @@ public class UserController {
         return "indexFac";
     }
 
-    @Transactional
-    @RequestMapping("/updateStudent")
-    public String updateUser(@RequestParam("stuEmail") String stuEmail,@RequestParam("stuMobile") String stuMobile,@RequestParam("stuAddress") String stuAddress,@RequestParam("stuPincode") String stuPincode,@RequestParam("stuHobby") String stuHobby) {
-        userRepo.update(stuEmail,stuMobile,stuAddress,stuPincode,stuHobby);
-        return "indexStu";
-    }
+    // @Transactional
+    // @RequestMapping("/updateStudent")
+    // public String updateUser(@RequestParam("stuEmail") String stuEmail,@RequestParam("stuMobile") String stuMobile,@RequestParam("stuAddress") String stuAddress,@RequestParam("stuPincode") String stuPincode,@RequestParam("stuHobby") String stuHobby) {
+    //     userRepo.update(stuEmail,stuMobile,stuAddress,stuPincode,stuHobby);
+    //     return "indexStu";
+    // }
 
     @Transactional
     @RequestMapping("/update-sem")
@@ -228,4 +232,54 @@ public class UserController {
     public String redirectToupldGrades() {
         return "UploadGrades";
     }
+
+    // Admin Module Start
+
+    @RequestMapping("/goto-viewStudents")
+    public String getallstuad(Model model) {
+        model.addAttribute("stubysemadmin", userRepo.findAll());
+        return "viewstudentsadmin";
+    }
+
+    @RequestMapping("/goto-viewfaculty")
+    public String getallfacad(Model model) {
+        model.addAttribute("facultyadmin", facRepo.findAll());
+        return "viewfacultyadmin";
+    }
+
+    @RequestMapping("/goto-viewparent")
+    public String getallparentad(Model model) {
+        model.addAttribute("guaadmin",gurRepo.findAll());
+        return "viewparentadmin";
+    }
+
+    @Transactional
+    @RequestMapping("/update-sem-admin")
+    public String updatestusemadmin(@RequestParam("stuEmail") String stuEmail,@RequestParam("stuSem") String stuSem,Model model) {
+        userRepo.updateSem(stuEmail, stuSem);
+        model.addAttribute("stubysemadmin", userRepo.findAll());
+        return "viewstudentsadmin";
+    }
+
+    @Transactional
+    @RequestMapping("/update-faculty-admin")
+    public String updatefacadmin(@RequestParam("facEmail") String facEmail,@RequestParam("facDesig") String facDesig,Model model) {
+        facRepo.updatefac(facEmail, facDesig);
+        model.addAttribute("facultyadmin", facRepo.findAll());
+        return "viewfacultyadmin";
+    }
+
+    @RequestMapping("/save-facpassandid")
+    public String saveFacpass(Model model, SignUp signUp) {
+        signupRepo.save(signUp);
+        //model.addAttribute("error", "You have completed your profile. Kindly Login Again.");
+        return "facultypassandemail";
+    }
+
+    @RequestMapping("/indexAdmin")
+    public String redirectToindexAdmin() {
+        return "indexAdmin";
+    }
+    // Admin Module End
+
 }

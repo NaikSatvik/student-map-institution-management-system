@@ -19,9 +19,9 @@ public interface UserRepository extends JpaRepository<User,Long> {
 
     @Modifying
     @Query("UPDATE User s SET s.stuMobile = :stuMobile, s.stuAddress = :stuAddress, s.stuPincode = :stuPincode, s.stuHobby = :stuHobby WHERE s.stuEmail = :stuEmail")
-    int update(@Param("stuEmail") String stuEmail, @Param("stuMobile") String stuMobile, @Param("stuAddress") String stuAddress, @Param("stuPincode") String stuPincode, @Param("stuHobby") String stuHobby);
+    int update(@Param("stuEmail") String stuEmail, @Param("stuMobile") String stuMobile);
 
     @Modifying
     @Query("UPDATE User u SET u.stuSem = :stuSem WHERE u.stuEmail = :stuEmail")
-    int update(@Param("stuEmail") String stuEmail, @Param("stuSem") String stuSem);
+    int updateSem(@Param("stuEmail") String stuEmail, @Param("stuSem") String stuSem);
 }

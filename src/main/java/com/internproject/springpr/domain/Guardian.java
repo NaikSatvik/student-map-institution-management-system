@@ -25,7 +25,8 @@ public class Guardian {
 
     }
 
-    public Guardian(String gurFname, String gurMname, String gurLname, String gurMobile, String gurEmail, String gurPass, String gurAddress, String gurPincode, String gurStudentmail) {
+    public Guardian(Long id, String gurFname, String gurMname, String gurLname, String gurMobile, String gurEmail, String gurPass, String gurAddress, String gurPincode, String gurStudentmail) {
+        this.id = id;
         this.gurFname = gurFname;
         this.gurMname = gurMname;
         this.gurLname = gurLname;
@@ -51,6 +52,14 @@ public class Guardian {
 
     public void setGurMname(String gurMname) {
         this.gurMname = gurMname;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getGurLname() {

@@ -1,5 +1,7 @@
 package com.internproject.springpr.service;
 
+import java.util.List;
+
 import com.internproject.springpr.domain.Guardian;
 import com.internproject.springpr.repository.GuardianRepository;
 
@@ -13,5 +15,10 @@ public class GuardianService {
     public Guardian glogin(String gurEmail,String gurPass,String gurStudentmail) {
         Guardian guardian = grepo.findByGurEmailAndGurPassAndGurStudentmail(gurEmail, gurPass, gurStudentmail);
         return guardian;
+    }
+
+    public List<Guardian> getallparentad() {
+        List <Guardian> getparent = grepo.findAll();
+        return getparent;
     }
 }

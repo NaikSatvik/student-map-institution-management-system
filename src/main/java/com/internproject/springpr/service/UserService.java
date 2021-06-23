@@ -19,4 +19,9 @@ public class UserService {
         List <User> getstu = repo.findAll();
         return getstu;
     }
+
+    public List<User> getallstuad() {
+        List <User> getstu = repo.findAll();
+        return getstu;
+    }
 }

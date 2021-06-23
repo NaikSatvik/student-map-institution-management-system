@@ -3,6 +3,7 @@ import java.util.List;
 
 import com.internproject.springpr.domain.Faculty;
 import com.internproject.springpr.repository.FacultyRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,5 +15,10 @@ public class FacultyService {
     public List<Faculty> getByEmail(String facEmail) {
         List<Faculty> stubyemail = frepo.findByFacEmail(facEmail);
         return stubyemail;
+    }
+
+    public List<Faculty> getallfacad() {
+        List <Faculty> getfac = frepo.findAll();
+        return getfac;
     }
 }

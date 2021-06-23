@@ -1,7 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8" />
     <title>Faculty | Dashboard</title>
@@ -103,8 +102,7 @@
                                         <input type="text" class="form-control" placeholder="Search ..."
                                             aria-label="Recipient's username">
                                         <div class="input-group-append">
-                                            <button class="btn btn-primary" type="submit"><i
-                                                    class="mdi mdi-magnify"></i></button>
+                                            <button class="btn btn-primary" type="submit"><i class="mdi mdi-magnify"></i></button>
                                         </div>
                                     </div>
                                 </div>
@@ -226,7 +224,7 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body" style="text-align: center;">
-                                    <h4>Your Excel file should have these cols. to upload the result of Semester 1</h4>
+                                    <h4>Your Excel file should have these columns to upload the result of Semester 1</h4>
                                     <button type="button" class="btn btn-success waves-effect waves-light">Name</button>
                                     <button type="button" class="btn btn-success waves-effect waves-light">Email-ID</button>
                                     <button type="button" class="btn btn-success waves-effect waves-light">Er.No.</button>
@@ -273,18 +271,6 @@
                     <!-- end row -->
 
                     <div class="form-box" class="row">
-                        <!-- <form   action ="uploadFile" method = "POST" enctype = "multipart/form-data">
-                            <br /> <br />
-                               Please select a file to upload : 
-                               <input type = "file" name = "file" value = "Browse File" /> <br /> <br />
-                               Press here to upload the file :
-                               <input type = "submit" value = "upload" /> <br /> <br /> 
-                               
-                               <h4 style="color: green">${message}</h4> <br /> 
-                               
-                               Do you want to save excel data into database ? <a href="saveData"><b>Yes</b></a> &nbsp &nbsp <a href="/"><b>No</b></a>
-                            </form> -->
-                            
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
@@ -293,7 +279,6 @@
                                     <div>
                                         <div>
                                             <form action ="uploadFile" method = "POST" enctype = "multipart/form-data">
-                                                <!-- <label for="formFileLg" class="form-label">Large file input example</label> -->
                                                 <input class="btn btn-outline-info waves-effect waves-light" id="formFileLg" type="file" name="file">&nbsp;&nbsp;
                                                 <input type="submit" value="Upload File" class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target="#exampleModalScrollable"><br><br>  
                                             </form>
@@ -335,24 +320,6 @@
                                                 <div><h2><script>alert("Total ${noOfRecords} records are uploaded Successfully!!")</script></h2></div>
                                             </c:if>
                                         </div>
-                                        <!-- <div class="card alert border p-0 mb-0">
-                                            <div class="card-header bg-soft-success">
-                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                                <h5 class="font-size-16 text-success my-1">Success Alert</h5>
-                                            </div>
-                                            <div class="card-body">
-                                                <div class="text-center">
-                                                    <div class="mb-4">
-                                                        <i class="mdi mdi-checkbox-marked-circle-outline display-4 text-success"></i>
-                                                    </div>
-                                                    <h4 class="alert-heading font-18">Uploaded Successfully</h4>
-                                                     <p>Placed your Order successfully</p> 
-                                                    <a href="saveData"><button type="button" class="btn btn-primary waves-effect waves-light">Send File to Server</button></a>
-                                                </div>
-                                            </div>
-                                        </div> -->
                                     </div>
                                 </div><!-- /.modal-content -->
                             </div><!-- /.modal-dialog -->
