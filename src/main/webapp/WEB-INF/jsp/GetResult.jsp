@@ -1,3 +1,5 @@
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html lang="en">
     <head>
@@ -130,7 +132,7 @@
                             </li>
 
                             <li>
-                                <a style="color: #FCFBFC;" href="/StudentQuery" class="waves-effect">
+                                <a href="/StudentQuery" class="waves-effect">
                                     <i class="mdi mdi-view-dashboard"></i><span class="badge badge-pill badge-success float-right"></span>
                                     <span>Student Query</span>
                                 </a>
@@ -144,7 +146,7 @@
                             </li>
 
                             <li>
-                                <a href="/getResult" class="waves-effect">
+                                <a style="color: #FCFBFC;" href="/getResult" class="waves-effect">
                                     <i class="mdi mdi-view-dashboard"></i><span class="badge badge-pill badge-success float-right"></span>
                                     <span>Get Result</span>
                                 </a>
@@ -210,91 +212,130 @@
 
                 <div class="page-content">
                     <div class="container-fluid">
-            
+
                         <!-- start page title -->
                         <div class="row">
-                            <div class="col-lg-6">
-                                <h1>Student Query Form</h1>
-                
-                            </div>
-                        </div>
+                            <h1>View Your Result Here</h1>
+
+                        </div>     
                         <!-- end page title -->
-            
+
+                        <c:forEach var="r" items="${result}">
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="card">
                                     <div class="card-body">
-                                        <form class="custom-validation" action="/Student" method="POST">
-                                            <div class="form-group">
-                                                <label>First-Name</label>
-                                                <input type="text" class="form-control" name="stuFname" />
-                                            </div>
-            
-                                            <div class="form-group">
-                                                <label>Middle Name</label>
-                                                <div>
-                                                    <input type="text" class="form-control" name="stuMname" />
+                                            <form class="custom-validation" method="POST">
+                                                
+                                                <div class="form-group">
+                                                    <label>Name</label>
+                                                    <input type="text" class="form-control" value="${r.name}" readonly />
                                                 </div>
-                                            </div>
-            
-                                            <div class="form-group">
-                                                <label>Last Name</label>
-                                                <div>
-                                                    <input type="text" class="form-control" name="stuLname" />
+                
+                                                <div class="form-group">
+                                                    <label>Email - ID</label>
+                                                    <input type="text" class="form-control" value="${sessionScope.mail}" readonly />
                                                 </div>
-                                            </div>
-                                            
-                                            <div class="form-group">
-                                                <label>Email</label>
-                                                <div>
-                                                    <input type="text" class="form-control" name="stuEmail" value="${sessionScope.mail}" readonly />
+                
+                                                <div class="form-group">
+                                                    <label>Enrollment Number</label>
+                                                    <input type="text" class="form-control" value="${r.enroll}" readonly />
                                                 </div>
-                                            </div>
-                                            
-                                            <div class="form-group">
-                                                <label>Semester</label>
-                                                <div>
-                                                    <input type="text" class="form-control" name="stuSem" />
+                                                
+                                                <div class="form-group">
+                                                    <label>Branch</label>
+                                                    <div>
+                                                        <input type="text" class="form-control" value="${r.branch}" readonly />
+                                                    </div>
                                                 </div>
-                                            </div>
-            
-                                            <div class="form-group">
-                                                <label>Write Your Query</label>
-                                                <div>
-                                                    <textarea name="stuQuery" required class="form-control" rows="5"></textarea>
+                                                
+                                                <div class="form-group">
+                                                    <label>Year</label>
+                                                    <div>
+                                                        <input type="text" class="form-control" value="${r.year}" readonly />
+                                                    </div>
                                                 </div>
-                                            </div>
-                            
-                                            <div class="form-group mb-0">
-                                                <div>
-                                                    <button type="submit" class="btn btn-primary waves-effect waves-light mr-1">
-                                                        Save
-                                                    </button>
+                
+                                                <div class="form-group">
+                                                    <label>Semester</label>
+                                                    <div>
+                                                        <input type="text" class="form-control" value="${r.semester}" readonly />
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </form>
+
+                                                <div class="form-group">
+                                                    <label>IP</label>
+                                                    <div>
+                                                        <input type="text" class="form-control" value="${r.ip}" readonly />
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label>ESFP-I</label>
+                                                    <div>
+                                                        <input type="text" class="form-control" value="${r.esfpi}" readonly />
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label>DE</label>
+                                                    <div>
+                                                        <input type="text" class="form-control" value="${r.de}" readonly />
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="form-group">
+                                                    <label>BE</label>
+                                                    <div>
+                                                        <input type="text" class="form-control" value="${r.be}" readonly />
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label>Calculus</label>
+                                                    <div>
+                                                        <input type="text" class="form-control" value="${r.calculus}" readonly />
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label>SGPA</label>
+                                                    <div>
+                                                        <input type="text" class="form-control" value="${r.sgpa}" readonly />
+                                                    </div>
+                                                </div>
+                                                <!-- <div class="form-group mb-0">
+                                                    <div>
+                                                        <button type="submit" class="btn btn-primary waves-effect waves-light mr-1">
+                                                            Save
+                                                        </button>
+                                                    </div>
+                                                </div> -->
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        </c:forEach>
                         <!-- end row -->
-            
+
                         <div class="row">
-            
+                            
                         </div>
                         <!-- end row -->
-            
+
                         <div class="row">
-            
+                            
                         </div>
                         <!-- end row -->
-            
-            
+                        
+
                         <div class="row">
-            
+                            
                         </div>
                         <!-- end row -->
-            
+                        
                     </div> <!-- container-fluid -->
                 </div>
                 <!-- End Page-content -->

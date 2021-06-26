@@ -174,6 +174,7 @@
                             </a>
                             <ul class="sub-menu" aria-expanded="false">
                                 <li><a style="color: #FCFBFC;" href="#">Upload Grades</a></li>
+                                <li><a href="UploadNotice">Upload Notice</a></li>
                                 <!-- <li><a href="#">Email Read</a></li> -->
                                 <!-- <li><a href="#">Email Compose</a></li> -->
                             </ul>

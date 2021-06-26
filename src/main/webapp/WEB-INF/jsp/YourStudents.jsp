@@ -33,7 +33,6 @@
         <script src="https://cdn.datatables.net/fixedheader/3.1.9/js/dataTables.fixedHeader.min.js"></script>
 
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.25/datatables.min.css"/>
- 
         <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.25/datatables.min.js"></script>
     </head>
     <body data-sidebar="dark">
@@ -216,6 +215,7 @@
                                 </a>
                                 <ul class="sub-menu" aria-expanded="false">
                                     <li><a href="UploadGrades">Upload Grades</a></li>
+                                    <li><a href="UploadNotice">Upload Notice</a></li>
                                     <!-- <li><a href="#">Email Read</a></li> -->
                                     <!-- <li><a href="#">Email Compose</a></li> -->
                                 </ul>

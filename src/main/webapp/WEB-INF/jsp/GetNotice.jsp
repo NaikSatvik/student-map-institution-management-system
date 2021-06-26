@@ -1,3 +1,5 @@
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html lang="en">
     <head>
@@ -130,14 +132,14 @@
                             </li>
 
                             <li>
-                                <a style="color: #FCFBFC;" href="/StudentQuery" class="waves-effect">
+                                <a href="/StudentQuery" class="waves-effect">
                                     <i class="mdi mdi-view-dashboard"></i><span class="badge badge-pill badge-success float-right"></span>
                                     <span>Student Query</span>
                                 </a>
                             </li>
 
                             <li>
-                                <a href="/getNotice" class="waves-effect">
+                                <a style="color: #FCFBFC;" href="/getNotice" class="waves-effect">
                                     <i class="mdi mdi-view-dashboard"></i><span class="badge badge-pill badge-success float-right"></span>
                                     <span>Notices</span>
                                 </a>
@@ -210,91 +212,44 @@
 
                 <div class="page-content">
                     <div class="container-fluid">
-            
+
                         <!-- start page title -->
                         <div class="row">
-                            <div class="col-lg-6">
-                                <h1>Student Query Form</h1>
-                
-                            </div>
-                        </div>
+                            <h1>View Notices</h1>
+                        </div>     
+                        <br>
                         <!-- end page title -->
-            
+
                         <div class="row">
-                            <div class="col-lg-6">
-                                <div class="card">
+                        </div>
+                        <!-- end row -->
+                        <c:forEach var="n" items="${noticeres}">
+                            <div class="row">
+                                <div class="card text-white" style="background-color: #333; border-color: #333; width: 95%;">
                                     <div class="card-body">
-                                        <form class="custom-validation" action="/Student" method="POST">
-                                            <div class="form-group">
-                                                <label>First-Name</label>
-                                                <input type="text" class="form-control" name="stuFname" />
-                                            </div>
-            
-                                            <div class="form-group">
-                                                <label>Middle Name</label>
-                                                <div>
-                                                    <input type="text" class="form-control" name="stuMname" />
-                                                </div>
-                                            </div>
-            
-                                            <div class="form-group">
-                                                <label>Last Name</label>
-                                                <div>
-                                                    <input type="text" class="form-control" name="stuLname" />
-                                                </div>
-                                            </div>
-                                            
-                                            <div class="form-group">
-                                                <label>Email</label>
-                                                <div>
-                                                    <input type="text" class="form-control" name="stuEmail" value="${sessionScope.mail}" readonly />
-                                                </div>
-                                            </div>
-                                            
-                                            <div class="form-group">
-                                                <label>Semester</label>
-                                                <div>
-                                                    <input type="text" class="form-control" name="stuSem" />
-                                                </div>
-                                            </div>
-            
-                                            <div class="form-group">
-                                                <label>Write Your Query</label>
-                                                <div>
-                                                    <textarea name="stuQuery" required class="form-control" rows="5"></textarea>
-                                                </div>
-                                            </div>
-                            
-                                            <div class="form-group mb-0">
-                                                <div>
-                                                    <button type="submit" class="btn btn-primary waves-effect waves-light mr-1">
-                                                        Save
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </form>
+                                        <h5 style="color: yellow;">${n.sub}</h5>
+                                        <p class="card-text">${n.content}</p>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <!-- end row -->
-            
+                        </c:forEach>
+                
                         <div class="row">
-            
+                            
                         </div>
                         <!-- end row -->
-            
+
                         <div class="row">
-            
+                            
                         </div>
                         <!-- end row -->
-            
-            
+                        
+
                         <div class="row">
-            
+                            
                         </div>
                         <!-- end row -->
-            
+                        
                     </div> <!-- container-fluid -->
                 </div>
                 <!-- End Page-content -->

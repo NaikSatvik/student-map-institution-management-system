@@ -3,15 +3,25 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date; 
 import com.internproject.springpr.domain.Faculty;
+import com.internproject.springpr.domain.Notice;
 import com.internproject.springpr.domain.SignUp;
 import com.internproject.springpr.domain.StudentQuery;
 import com.internproject.springpr.domain.User;
+import com.internproject.springpr.domain.follow;
 import com.internproject.springpr.repository.FacultyRepository;
 import com.internproject.springpr.repository.GuardianRepository;
+import com.internproject.springpr.repository.NoticeRepository;
+import com.internproject.springpr.repository.Res_SemOneRepository;
 import com.internproject.springpr.repository.SignUpRepository;
 import com.internproject.springpr.repository.StudentQueryRepository;
 import com.internproject.springpr.repository.UserRepository;
+import com.internproject.springpr.repository.followRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,6 +47,18 @@ public class UserController {
 
     @Autowired
     private GuardianRepository gurRepo;
+
+    @Autowired
+    private NoticeRepository noteRepo;
+
+    @Autowired
+    private followRepository folrepo;
+
+    @Autowired
+    private Res_SemOneRepository semOneRepo;
+
+    @Autowired
+    private NoticeRepository noticeRepo;
 
     @RequestMapping("/index")
     public String redirectToLogin() {
@@ -233,6 +255,18 @@ public class UserController {
         return "UploadGrades";
     }
 
+    @RequestMapping("/UploadNotice")
+    public String redirectToUploadNotice() {
+        return "UploadNotice";
+    }
+
+    @RequestMapping("/SaveNotice")
+    public String saveNotice(Model model, Notice notice ) {
+        noteRepo.save(notice);
+        model.addAttribute("error","Notice has been uploaded");
+        return "UploadNotice";
+    }
+
     // Admin Module Start
 
     @RequestMapping("/goto-viewStudents")
@@ -282,4 +316,60 @@ public class UserController {
     }
     // Admin Module End
 
+    // Student Module (Follow Feature) Start
+
+    @RequestMapping("/find-friends")
+    public String redirectToFindFriends(Model model) {
+        model.addAttribute("listStudents",userRepo.findAll());
+        //System.out.println(x);
+        return "FindFriends";
+    }
+
+    @RequestMapping("/follow")
+    public String insfollow(Model model,follow fol) {
+        folrepo.save(fol);
+        model.addAttribute("msg","Request sent");
+        return "FindFriends";
+    }
+
+    @RequestMapping("/check-requests")
+    public String followBack(@ModelAttribute("mail") String mail,Model model) {
+        String status = "Accept";
+        model.addAttribute("folbacklist",folrepo.findBystuNameAndStatus(mail,status));
+        return "PendingRequests";
+    }
+    @Transactional
+    @RequestMapping("/onAccept")
+    public String onAccept(@ModelAttribute("mail") String mail,@RequestParam ("sEmail") String sEmail,String status) {
+        status = "Accept";
+        folrepo.updateA(mail, sEmail, status);
+        return "PendingRequests";
+    }
+
+    @Transactional
+    @RequestMapping("/onDecline")
+    public String onDecline(@ModelAttribute("mail") String mail,@RequestParam ("sEmail") String sEmail,String status1) {
+        status1 = "Decline";
+        folrepo.updateB(mail, sEmail, status1);
+        return "PendingRequests";
+    }
+
+    @RequestMapping("/getResult")
+    public String redirectToResult(@ModelAttribute("mail") String mail, String semester, Model model) {
+        semester = "1";
+        model.addAttribute("result", semOneRepo.findByEmailidAndSemester(mail, semester));
+        return "GetResult";
+    }
+
+    @RequestMapping("/getNotice")
+    public String redirectToNotice(Model model) throws Exception {
+        Date date = Calendar.getInstance().getTime();  
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String strDate = dateFormat.format(date);  
+        System.out.println(strDate);
+        model.addAttribute("noticeres", noticeRepo.findByExpDate(strDate));
+        return "GetNotice";
+    }
+
+    // Student Module (Follow Feature) End
 }

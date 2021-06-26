@@ -1,3 +1,5 @@
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html lang="en">
     <head>
@@ -67,8 +69,7 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="mdi mdi-magnify"></i>
                             </button>
-                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0"
-                                aria-labelledby="page-header-search-dropdown">
+                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0" aria-labelledby="page-header-search-dropdown">
                     
                                 <form class="p-3">
                                     <div class="form-group m-0">
@@ -123,30 +124,23 @@
                             <!-- <li class="menu-title">Menu</li> -->
 
                             <li>
+                                <a href="/find-friends" class="waves-effect">
+                                    <i class="mdi mdi-view-dashboard"></i><span class="badge badge-pill badge-success float-right"></span>
+                                    <span>Find Friends</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a  style="color: #FCFBFC;" href="/check-requests" class="waves-effect">
+                                    <i class="mdi mdi-view-dashboard"></i><span class="badge badge-pill badge-success float-right"></span>
+                                    <span>Pending Requests</span>
+                                </a>
+                            </li>
+
+                            <li>
                                 <a href="/indexStu" class="waves-effect">
                                     <i class="mdi mdi-view-dashboard"></i><span class="badge badge-pill badge-success float-right"></span>
-                                    <span>Student Dashboard</span>
-                                </a>
-                            </li>
-
-                            <li>
-                                <a style="color: #FCFBFC;" href="/StudentQuery" class="waves-effect">
-                                    <i class="mdi mdi-view-dashboard"></i><span class="badge badge-pill badge-success float-right"></span>
-                                    <span>Student Query</span>
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="/getNotice" class="waves-effect">
-                                    <i class="mdi mdi-view-dashboard"></i><span class="badge badge-pill badge-success float-right"></span>
-                                    <span>Notices</span>
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="/getResult" class="waves-effect">
-                                    <i class="mdi mdi-view-dashboard"></i><span class="badge badge-pill badge-success float-right"></span>
-                                    <span>Get Result</span>
+                                    <span>Go To Dashboard</span>
                                 </a>
                             </li>
 
@@ -210,91 +204,69 @@
 
                 <div class="page-content">
                     <div class="container-fluid">
-            
+
                         <!-- start page title -->
                         <div class="row">
-                            <div class="col-lg-6">
-                                <h1>Student Query Form</h1>
-                
-                            </div>
-                        </div>
+                            <h1>Check Your Friend Requests Here !!</h1>
+                        </div>     
                         <!-- end page title -->
-            
+
                         <div class="row">
-                            <div class="col-lg-6">
+                            <div class="col-lg-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <form class="custom-validation" action="/Student" method="POST">
-                                            <div class="form-group">
-                                                <label>First-Name</label>
-                                                <input type="text" class="form-control" name="stuFname" />
-                                            </div>
-            
-                                            <div class="form-group">
-                                                <label>Middle Name</label>
-                                                <div>
-                                                    <input type="text" class="form-control" name="stuMname" />
-                                                </div>
-                                            </div>
-            
-                                            <div class="form-group">
-                                                <label>Last Name</label>
-                                                <div>
-                                                    <input type="text" class="form-control" name="stuLname" />
-                                                </div>
-                                            </div>
-                                            
-                                            <div class="form-group">
-                                                <label>Email</label>
-                                                <div>
-                                                    <input type="text" class="form-control" name="stuEmail" value="${sessionScope.mail}" readonly />
-                                                </div>
-                                            </div>
-                                            
-                                            <div class="form-group">
-                                                <label>Semester</label>
-                                                <div>
-                                                    <input type="text" class="form-control" name="stuSem" />
-                                                </div>
-                                            </div>
-            
-                                            <div class="form-group">
-                                                <label>Write Your Query</label>
-                                                <div>
-                                                    <textarea name="stuQuery" required class="form-control" rows="5"></textarea>
-                                                </div>
-                                            </div>
-                            
-                                            <div class="form-group mb-0">
-                                                <div>
-                                                    <button type="submit" class="btn btn-primary waves-effect waves-light mr-1">
-                                                        Save
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </form>
+                                        <div class="table-responsive">
+                                            <table style="overflow: hidden;" class="table table-centered table-nowrap mb-0" id="example" class="display">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">ID</th>
+                                                        <th scope="col">Student Name</th>
+                                                        <th scope="col">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <c:forEach var="s" items="${folbacklist}">
+                                                        <tr>
+                                                            <form action="onAccept" method="POST">
+                                                                <td class="nr3">${s.id}</td>
+                                                                <td class="nr4"><input type="text" name="sEmail" value="${s.sEmail}" style="outline: none; border: none;" readonly/></td>
+                                                                <td class="nr5">
+                                                                    <input class="btn btn-outline-success btn-sm" type="submit" value="Accept"/>
+                                                        </form>
+                                                                    <form style="display: inline;" action="onDecline" method="POST">
+                                                                        <input type="text" name="sEmail" value="${s.sEmail}" hidden/>
+                                                                        <input class="btn btn-outline-danger btn-sm" type="submit" value="Decline"/>
+                                                                    </form>
+                                                                </td>
+                                                        </tr>
+                                                    </c:forEach>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <!-- end row -->
-            
+
                         <div class="row">
-            
+                            <c:if test="${not empty msg}">
+                                <div><h2><script>alert("Your request has been sent successfully !!")</script></h2></div>
+                            </c:if>
                         </div>
                         <!-- end row -->
-            
+
                         <div class="row">
-            
+                            
                         </div>
                         <!-- end row -->
-            
-            
+                        
+
                         <div class="row">
-            
+                            
                         </div>
                         <!-- end row -->
-            
+                        
                     </div> <!-- container-fluid -->
                 </div>
                 <!-- End Page-content -->
