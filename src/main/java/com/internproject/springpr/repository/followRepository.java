@@ -15,7 +15,7 @@ public interface followRepository extends JpaRepository<follow,Long>{
     @Query("Delete from follow where stuName=:stuName and sEmail=:sEmail")
     int unfollow(@Param ("stuName") String stuName, @Param ("sEmail") String sEmail);
 
-    List<follow>  findBystuNameAndStatus(String stuName,String status);
+    List<follow>  findByStuNameAndStatus(String stuName,String status);
 
     @Modifying
     @Query("update follow f set f.status=:status where sEmail=:sEmail and stuName=:stuName")

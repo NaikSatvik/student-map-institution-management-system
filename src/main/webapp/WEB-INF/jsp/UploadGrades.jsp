@@ -179,6 +179,19 @@
                                 <!-- <li><a href="#">Email Compose</a></li> -->
                             </ul>
                         </li>
+
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                <i class="mdi mdi-account-group"></i>
+                                <span>Queries</span>
+                            </a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="/revertStuQueries">Student Queries</a></li>
+                                <li><a href="/revertGurQueries">Guardian Queries</a></li>
+                                <!-- <li><a href="auth-recoverpw.html">Recover Password</a></li> -->
+                                <!-- <li><a href="auth-lock-screen.html">Lock Screen</a></li> -->
+                            </ul>
+                        </li>
                     </ul>
                     <div class="sidebar-section mt-5 mb-3">
 

@@ -10,6 +10,7 @@ public class SignUp {
     private String role;
     private String username;
     private String mailid;
+    private String stumailid;
     private String pass;
     // This is a comment
     public SignUp() {
@@ -29,6 +30,14 @@ public class SignUp {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getStumailid() {
+        return stumailid;
+    }
+
+    public void setStumailid(String stumailid) {
+        this.stumailid = stumailid;
     }
 
     public String getUsername() {

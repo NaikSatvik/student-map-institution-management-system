@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date; 
 import com.internproject.springpr.domain.Faculty;
+import com.internproject.springpr.domain.GurQuery;
 import com.internproject.springpr.domain.Notice;
 import com.internproject.springpr.domain.SignUp;
 import com.internproject.springpr.domain.StudentQuery;
@@ -15,6 +16,7 @@ import com.internproject.springpr.domain.User;
 import com.internproject.springpr.domain.follow;
 import com.internproject.springpr.repository.FacultyRepository;
 import com.internproject.springpr.repository.GuardianRepository;
+import com.internproject.springpr.repository.GurQueryRepository;
 import com.internproject.springpr.repository.NoticeRepository;
 import com.internproject.springpr.repository.Res_SemOneRepository;
 import com.internproject.springpr.repository.SignUpRepository;
@@ -60,6 +62,9 @@ public class UserController {
     @Autowired
     private NoticeRepository noticeRepo;
 
+    @Autowired
+    private GurQueryRepository gurQueryRepo;
+
     @RequestMapping("/index")
     public String redirectToLogin() {
         return "login";
@@ -75,14 +80,19 @@ public class UserController {
         return "SignUp";
     }
 
+    @Transactional
     @RequestMapping("/insertdata-signup")
-    public String insertSignUpData(@RequestParam("role") String role,@RequestParam("username") String username,@RequestParam("mailid") String mailid,@RequestParam("pass") String pass,@RequestParam("confpass") String confpass, Model model, SignUp signup) {
+    public String insertSignUpData(@RequestParam("role") String role,@RequestParam("username") String username,@RequestParam("mailid") String mailid,@RequestParam("stumailid") String stumailid,@RequestParam("pass") String pass,@RequestParam("confpass") String confpass, Model model, SignUp signup) {
         String pass1 = pass;
         String pass2 = confpass;
         SignUp s = null;
+
         if (pass1.equals(pass2)) {
             s = signupRepo.findByMailid(mailid);
-            if (s == null) {
+            if (role.equals("guardian")) {
+                signupRepo.updateGurEntry(mailid, stumailid, username, pass);
+                model.addAttribute("error", "You have been signed up Successfully !!");
+            } else if (s == null) {
                 signupRepo.save(signup);
                 model.addAttribute("error", "You have been signed up Successfully !!");
             } else {
@@ -267,6 +277,38 @@ public class UserController {
         return "UploadNotice";
     }
 
+    @RequestMapping("/revertStuQueries")
+    public String redirectTostuqueries(Model model) {
+        String reply = null;
+        model.addAttribute("getStuQ", stuqueryRepo.findByReply(reply));
+        return "RevStuQueries";
+    }
+    @Transactional
+    @RequestMapping("/saveReply")
+    public String updateStuQueryReply(@RequestParam ("stuQuery") String stuQuery,@RequestParam ("reply") String reply,  Model model) {
+        stuqueryRepo.updatestureply(stuQuery, reply);
+        String reply1 = null;
+        model.addAttribute("msg", "Message reverted successfully");
+        model.addAttribute("getStuQ", stuqueryRepo.findByReply(reply1));
+        return "RevStuQueries";
+    }
+
+    @RequestMapping("/revertGurQueries")
+    public String redirectTogurqueries(Model model) {
+        String reply = null;
+        model.addAttribute("getGurQ", gurQueryRepo.findByReply(reply));
+        return "RevGurQueries";
+    }
+    @Transactional
+    @RequestMapping("/saveReplyGur")
+    public String updateGurQueryReply(@RequestParam ("gurQueryContent") String gurQueryContent ,@RequestParam ("reply") String reply,  Model model) {
+        gurQueryRepo.updategurreply(gurQueryContent, reply);
+        String reply1 = null;
+        model.addAttribute("msg", "Message reverted successfully");
+        model.addAttribute("getGurQ", gurQueryRepo.findByReply(reply1));
+        return "RevGurQueries";
+    }
+
     // Admin Module Start
 
     @RequestMapping("/goto-viewStudents")
@@ -334,8 +376,8 @@ public class UserController {
 
     @RequestMapping("/check-requests")
     public String followBack(@ModelAttribute("mail") String mail,Model model) {
-        String status = "Accept";
-        model.addAttribute("folbacklist",folrepo.findBystuNameAndStatus(mail,status));
+        String status = "Pending";
+        model.addAttribute("folbacklist",folrepo.findByStuNameAndStatus(mail,status));
         return "PendingRequests";
     }
     @Transactional
@@ -352,6 +394,13 @@ public class UserController {
         status1 = "Decline";
         folrepo.updateB(mail, sEmail, status1);
         return "PendingRequests";
+    }
+
+    @RequestMapping("/friends")
+    public String redirectToYourFriends(@ModelAttribute("mail") String mail,Model model) {
+        String status = "Accept";
+        model.addAttribute("acceptlist",folrepo.findByStuNameAndStatus(mail,status));
+        return "YourFriends";
     }
 
     @RequestMapping("/getResult")
@@ -371,5 +420,57 @@ public class UserController {
         return "GetNotice";
     }
 
+    @RequestMapping("/repliesStu")
+    public String redirectToStuQueryResponse(@ModelAttribute("mail") String mail, Model model) {
+        model.addAttribute("getResponsesStu", stuqueryRepo.findByStuEmail(mail));
+        return "StuQueryResponses";
+    }
+
     // Student Module (Follow Feature) End
+
+    // Guardian Module Start
+
+    @RequestMapping("/indexGur")
+    public String redirectToGurDash() {
+        return "indexGur";
+    }
+
+    @RequestMapping("/queryform")
+    public String redirectToGurQuery() {
+        return "GurQueryForm";
+    }
+
+    @RequestMapping("/insGurQuery")
+    public String saveGurQuery(Model model, GurQuery gurQuery) {
+        gurQueryRepo.save(gurQuery);
+        model.addAttribute("msg","Query has been sent successfully.");
+        return "GurQueryForm";
+    }
+
+    @RequestMapping("/getNoticeGur")
+    public String redirectToNoticeGur(Model model) throws Exception {
+        Date date = Calendar.getInstance().getTime();  
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String strDate = dateFormat.format(date);  
+        System.out.println(strDate);
+        model.addAttribute("noticeres", noticeRepo.findByExpDate(strDate));
+        return "GetNoticeGur";
+    }
+
+    @RequestMapping("/getResultGur")
+    public String redirectToResultGur(@ModelAttribute("mail") String mail, String semester, Model model, SignUp signUp) {
+        semester = "1";
+        String stumailid = signupRepo.getStu(mail);
+        System.out.println(stumailid);
+        model.addAttribute("result", semOneRepo.findByEmailidAndSemester(stumailid, semester));
+        return "GetResultGur";
+    }
+
+    @RequestMapping("/replies")
+    public String redirectToGurQueryResponse(@ModelAttribute("mail") String mail, Model model) {
+        model.addAttribute("getResponses", gurQueryRepo.findByGurEmail(mail));
+        return "GurQueryResponses";
+    }
+
+    // Guardian Module End
 }

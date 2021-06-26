@@ -26,6 +26,24 @@
                 }
             }
         </style>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script>
+
+            $(document).ready(function(){
+                $('input[type="radio"]').click(function(){
+                    var inputValue = $(this).attr("value");
+                    var targetBox = $("." + inputValue);
+                    if (inputValue == "guardian") {
+                        $("#stud").css("display","inline");
+                        $(".box").not(targetBox).hide();
+                        $(targetBox).show();
+                    } else {
+                        $(".box").not(targetBox).hide();
+                        $(targetBox).hide();
+                    }
+                });
+            });
+        </script>
     </head>
 
     <body class="text-center">
@@ -44,14 +62,11 @@
                 <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
                     <input type="radio" class="btn-check" name="role" id="btnradio1" autocomplete="off" value="student">
                     <label class="btn btn-outline-primary" for="btnradio1">Student</label>
-          
-                    <input type="radio" class="btn-check" name="role" id="btnradio2" autocomplete="off" value="faculty">
-                    <label class="btn btn-outline-primary" for="btnradio2">Faculty</label>
-          
+    
                     <input type="radio" class="btn-check" name="role" id="btnradio3" autocomplete="off" value="guardian">
                     <label class="btn btn-outline-primary" for="btnradio3">Guardian</label>
-                  </div>
-                  <br><br>
+                </div>
+                <br><br>
                 <!-- main fields -->
                 <h1 class="h3 mb-3 fw-normal">Please SignUp</h1>
                 <div class="form-floating" id="stuname">
@@ -63,6 +78,14 @@
                         placeholder="name@example.com">
                     <label for="floatingInput">Email Address</label>
                 </div>
+                <div class="guardian box" id="stud" style="display: none;">
+                    <div class="form-floating">
+                        <input name="stumailid" type="email" class="form-control" id="floatingPassword"
+                            placeholder="Password">
+                        <label for="floatingPassword">Student's Email Address</label>
+                    </div>
+                </div>
+                
                 <div class="form-floating" id="pass">
                     <input name="pass" type="password" class="form-control" id="floatingPassword"
                         placeholder="Password">

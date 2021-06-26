@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>Faculty | Dashboard</title>
+        <title>Guardian | Dashboard</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
         <meta content="Themesdesign" name="author" />
@@ -98,7 +98,7 @@
                             </button>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <!-- item-->
-                                <a class="dropdown-item" href="/profile"><i class="mdi mdi-face-profile font-size-16 align-middle mr-1"></i> Profile</a>
+                                <a class="dropdown-item" href="/sprofile"><i class="mdi mdi-face-profile font-size-16 align-middle mr-1"></i> Profile</a>
                                 <!-- <a class="dropdown-item" href="#"><i class="mdi mdi-credit-card-outline font-size-16 align-middle mr-1"></i> Billing</a> -->
                                 <!-- <a class="dropdown-item" href="#"><i class="mdi mdi-account-settings font-size-16 align-middle mr-1"></i> Settings</a> -->
                                 <!-- <a class="dropdown-item" href="#"><i class="mdi mdi-lock font-size-16 align-middle mr-1"></i> Lock screen</a> -->
@@ -123,45 +123,40 @@
                             <!-- <li class="menu-title">Menu</li> -->
 
                             <li>
-                                <a style="color: #FCFBFC;" href="/indexFac" class="waves-effect">
+                                <a style="color: #FCFBFC;" href="/indexGur" class="waves-effect">
                                     <i class="mdi mdi-view-dashboard"></i><span class="badge badge-pill badge-success float-right"></span>
-                                    <span>Faculty Dashboard</span>
+                                    <span>Guardian Dashboard</span>
                                 </a>
                             </li>
-
-                            <li>
-                                <a href="/goto-yourstudents" class=" waves-effect">
-                                    <i class="mdi mdi-calendar-month"></i>
-                                    <span>Student Details</span>
-                                </a>
-                            </li>
-
+                            
                             <li>
                                 <a href="javascript: void(0);" class="has-arrow waves-effect">
                                     <i class="mdi mdi-email-multiple-outline"></i>
-                                    <span>Create & Upload</span>
+                                    <span>Post Queries</span>
                                 </a>
                                 <ul class="sub-menu" aria-expanded="false">
-                                    <li><a href="UploadGrades">Upload Grades</a></li>
-                                    <li><a href="UploadNotice">Upload Notice</a></li>
-                                    <!-- <li><a href="#">Email Read</a></li> -->
-                                    <!-- <li><a href="#">Email Compose</a></li> -->
+                                    <li><a href="/queryform">Query Form</a></li>
+                                    <li><a href="/replies">Responses</a></li>
                                 </ul>
                             </li>
 
                             <li>
-                                <a href="javascript: void(0);" class="has-arrow waves-effect">
-                                    <i class="mdi mdi-account-group"></i>
-                                    <span>Queries</span>
+                                <a href="/getNoticeGur" class="waves-effect">
+                                    <i class="mdi mdi-view-dashboard"></i><span class="badge badge-pill badge-success float-right"></span>
+                                    <span>Notices</span>
                                 </a>
-                                <ul class="sub-menu" aria-expanded="false">
-                                    <li><a href="/revertStuQueries">Student Queries</a></li>
-                                    <li><a href="/revertGurQueries">Guardian Queries</a></li>
-                                    <!-- <li><a href="auth-recoverpw.html">Recover Password</a></li> -->
-                                    <!-- <li><a href="auth-lock-screen.html">Lock Screen</a></li> -->
-                                </ul>
                             </li>
+
+                            <li>
+                                <a href="/getResultGur" class="waves-effect">
+                                    <i class="mdi mdi-view-dashboard"></i><span class="badge badge-pill badge-success float-right"></span>
+                                    <span>Student's Result</span>
+                                </a>
+                            </li>
+
+        
                         </ul>
+
                         <div class="sidebar-section mt-5 mb-3">
                             
                         </div>
@@ -181,7 +176,7 @@
 
                         <!-- start page title -->
                         <div class="row">
-                            <h1>Welcome Faculty</h1>
+                            <h1>Welcome Guardian</h1>
 
                         </div>     
                         <!-- end page title -->

@@ -11,6 +11,7 @@ public class StudentQuery {
     private String stuLname;
     private String stuMname;
     private String stuEmail;
+    private String reply;
     public String getStuEmail() {
         return stuEmail;
     }
@@ -29,6 +30,14 @@ public class StudentQuery {
     // This is a comment
     public StudentQuery() {
 
+    }
+
+    public String getReply() {
+        return reply;
+    }
+
+    public void setReply(String reply) {
+        this.reply = reply;
     }
 
     public StudentQuery(Long id, String stuFname, String stuLname, String stuMname, String stuSem, String stuQuery) {

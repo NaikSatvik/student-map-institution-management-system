@@ -101,7 +101,7 @@
                             <div class="dropdown-menu dropdown-menu-right">
                                 <!-- item-->
                                 <a class="dropdown-item" href="/sprofile"><i class="mdi mdi-face-profile font-size-16 align-middle mr-1"></i> Profile</a>
-                                <a class="dropdown-item" href="/find-friends"><i class="mdi mdi-credit-card-outline font-size-16 align-middle mr-1"></i> Find Friends</a>
+                                <!-- <a class="dropdown-item" href="/find-friends"><i class="mdi mdi-credit-card-outline font-size-16 align-middle mr-1"></i> Find Friends</a> -->
                                 <!-- <a class="dropdown-item" href="#"><i class="mdi mdi-account-settings font-size-16 align-middle mr-1"></i> Settings</a> -->
                                 <!-- <a class="dropdown-item" href="#"><i class="mdi mdi-lock font-size-16 align-middle mr-1"></i> Lock screen</a> -->
                                 <div class="dropdown-divider"></div>
@@ -125,9 +125,9 @@
                             <!-- <li class="menu-title">Menu</li> -->
 
                             <li>
-                                <a href="/indexStu" class="waves-effect">
+                                <a href="/indexGur" class="waves-effect">
                                     <i class="mdi mdi-view-dashboard"></i><span class="badge badge-pill badge-success float-right"></span>
-                                    <span>Student Dashboard</span>
+                                    <span>Guardian Dashboard</span>
                                 </a>
                             </li>
 
@@ -137,22 +137,22 @@
                                     <span>Post Queries</span>
                                 </a>
                                 <ul class="sub-menu" aria-expanded="false">
-                                    <li><a href="/StudentQuery">Query Form</a></li>
-                                    <li><a href="/repliesStu">Responses</a></li>
+                                    <li><a href="/queryform">Query Form</a></li>
+                                    <li><a href="/replies">Responses</a></li>
                                 </ul>
                             </li>
 
                             <li>
-                                <a href="/getNotice" class="waves-effect">
+                                <a style="color: #FCFBFC;" href="/getNoticeGur" class="waves-effect">
                                     <i class="mdi mdi-view-dashboard"></i><span class="badge badge-pill badge-success float-right"></span>
                                     <span>Notices</span>
                                 </a>
                             </li>
 
                             <li>
-                                <a style="color: #FCFBFC;" href="/getResult" class="waves-effect">
+                                <a href="/getResultGur" class="waves-effect">
                                     <i class="mdi mdi-view-dashboard"></i><span class="badge badge-pill badge-success float-right"></span>
-                                    <span>Get Result</span>
+                                    <span>Student's Result</span>
                                 </a>
                             </li>
 
@@ -219,111 +219,25 @@
 
                         <!-- start page title -->
                         <div class="row">
-                            <h1>View Your Result Here</h1>
-
+                            <h1>View Notices</h1>
                         </div>     
+                        <br>
                         <!-- end page title -->
 
-                        <c:forEach var="r" items="${result}">
                         <div class="row">
-                            <div class="col-lg-6">
-                                <div class="card">
+                        </div>
+                        <!-- end row -->
+                        <c:forEach var="n" items="${noticeres}">
+                            <div class="row">
+                                <div class="card text-white" style="background-color: #333; border-color: #333; width: 95%;">
                                     <div class="card-body">
-                                            <form class="custom-validation" method="POST">
-                                                
-                                                <div class="form-group">
-                                                    <label>Name</label>
-                                                    <input type="text" class="form-control" value="${r.name}" readonly />
-                                                </div>
-                
-                                                <div class="form-group">
-                                                    <label>Email - ID</label>
-                                                    <input type="text" class="form-control" value="${sessionScope.mail}" readonly />
-                                                </div>
-                
-                                                <div class="form-group">
-                                                    <label>Enrollment Number</label>
-                                                    <input type="text" class="form-control" value="${r.enroll}" readonly />
-                                                </div>
-                                                
-                                                <div class="form-group">
-                                                    <label>Branch</label>
-                                                    <div>
-                                                        <input type="text" class="form-control" value="${r.branch}" readonly />
-                                                    </div>
-                                                </div>
-                                                
-                                                <div class="form-group">
-                                                    <label>Year</label>
-                                                    <div>
-                                                        <input type="text" class="form-control" value="${r.year}" readonly />
-                                                    </div>
-                                                </div>
-                
-                                                <div class="form-group">
-                                                    <label>Semester</label>
-                                                    <div>
-                                                        <input type="text" class="form-control" value="${r.semester}" readonly />
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label>IP</label>
-                                                    <div>
-                                                        <input type="text" class="form-control" value="${r.ip}" readonly />
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label>ESFP-I</label>
-                                                    <div>
-                                                        <input type="text" class="form-control" value="${r.esfpi}" readonly />
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label>DE</label>
-                                                    <div>
-                                                        <input type="text" class="form-control" value="${r.de}" readonly />
-                                                    </div>
-                                                </div>
-                                                
-                                                <div class="form-group">
-                                                    <label>BE</label>
-                                                    <div>
-                                                        <input type="text" class="form-control" value="${r.be}" readonly />
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label>Calculus</label>
-                                                    <div>
-                                                        <input type="text" class="form-control" value="${r.calculus}" readonly />
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label>SGPA</label>
-                                                    <div>
-                                                        <input type="text" class="form-control" value="${r.sgpa}" readonly />
-                                                    </div>
-                                                </div>
-                                                <!-- <div class="form-group mb-0">
-                                                    <div>
-                                                        <button type="submit" class="btn btn-primary waves-effect waves-light mr-1">
-                                                            Save
-                                                        </button>
-                                                    </div>
-                                                </div> -->
-                                            </form>
-                                        </div>
+                                        <h5 style="color: yellow;">${n.sub}</h5>
+                                        <p class="card-text">${n.content}</p>
                                     </div>
                                 </div>
                             </div>
-                        </div>
                         </c:forEach>
-                        <!-- end row -->
-
+                
                         <div class="row">
                             
                         </div>

@@ -124,6 +124,13 @@
                             <!-- <li class="menu-title">Menu</li> -->
 
                             <li>
+                                <a href="/friends" class="waves-effect">
+                                    <i class="mdi mdi-view-dashboard"></i><span class="badge badge-pill badge-success float-right"></span>
+                                    <span>Your Friends</span>
+                                </a>
+                            </li>
+
+                            <li>
                                 <a style="color: #FCFBFC;" href="#" class="waves-effect">
                                     <i class="mdi mdi-view-dashboard"></i><span class="badge badge-pill badge-success float-right"></span>
                                     <span>Find Friends</span>

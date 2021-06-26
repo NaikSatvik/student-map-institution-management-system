@@ -149,6 +149,19 @@
                                 <!-- <li><a href="#">Email Compose</a></li> -->
                             </ul>
                         </li>
+
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                <i class="mdi mdi-account-group"></i>
+                                <span>Queries</span>
+                            </a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="/revertStuQueries">Student Queries</a></li>
+                                <li><a href="/revertGurQueries">Guardian Queries</a></li>
+                                <!-- <li><a href="auth-recoverpw.html">Recover Password</a></li> -->
+                                <!-- <li><a href="auth-lock-screen.html">Lock Screen</a></li> -->
+                            </ul>
+                        </li>
                     </ul>
                     <div class="sidebar-section mt-5 mb-3">
                         
@@ -206,8 +219,7 @@
                                         <div class="form-group row">
                                             <label for="example-text-input" class="col-md-2 col-form-label">Visible upto</label>
                                             <div class="col-md-10">
-                                                <input name="expDate" type="date" style="width:49.7%; display: inline;" class="form-control" placeholder="mm/dd/yyyy">&nbsp;
-                                                <input name="expTime" type="time" style="width:49.7%; display:inline;" class="form-control" placeholder="hh/mm">
+                                                <input name="expDate" type="date" style="width:49.7%; display: inline;" class="form-control" placeholder="mm/dd/yyyy">
                                             </div>
                                     </div>
                                     <div>
@@ -224,7 +236,6 @@
                     </div>
                 </form>
                 </div>
-
 
                     <!-- end row -->
 

@@ -130,10 +130,14 @@
                             </li>
 
                             <li>
-                                <a style="color: #FCFBFC;" href="/StudentQuery" class="waves-effect">
-                                    <i class="mdi mdi-view-dashboard"></i><span class="badge badge-pill badge-success float-right"></span>
-                                    <span>Student Query</span>
+                                <a style="color: #FCFBFC;" href="javascript: void(0);" class="has-arrow waves-effect">
+                                    <i class="mdi mdi-email-multiple-outline"></i>
+                                    <span>Post Queries</span>
                                 </a>
+                                <ul class="sub-menu" aria-expanded="false">
+                                    <li><a style="color: #FCFBFC;" href="/StudentQuery">Query Form</a></li>
+                                    <li><a href="/repliesStu">Responses</a></li>
+                                </ul>
                             </li>
 
                             <li>

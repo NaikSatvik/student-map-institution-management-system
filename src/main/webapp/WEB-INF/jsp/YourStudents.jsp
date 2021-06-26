@@ -126,14 +126,14 @@
             </header>
             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">  
                 <div class="modal-dialog modal-lg">  
-                  <div class="modal-content">  
+                    <div class="modal-content">  
                     <div class="modal-header">  
-                      <!-- <button type="button" class="close" data-dismiss="modal">×</button>   -->
-                      <h4 class="modal-title">Edit Student</h4>
+                        <!-- <button type="button" class="close" data-dismiss="modal">×</button>   -->
+                        <h4 class="modal-title">Edit Student</h4>
                     </div>  
                     <div class="modal-body">  
-                      <!-- <p>This is a large modal.</p>   -->
-                      <form class="custom-validation" action="/update-sem" method="POST">
+                        <!-- <p>This is a large modal.</p>   -->
+                        <form class="custom-validation" action="/update-sem" method="POST">
                         <div class="form-group">
                             <label>Name</label>
                             <input type="text" class="form-control" id="name" readonly/>
@@ -177,12 +177,12 @@
                     </form>
                     </div>  
                     <div class="modal-footer">  
-                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>  
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>  
                     </div>  
-                  </div>  
+                    </div>  
                 </div>  
             </div>
-              
+        
             <!-- ========== Left Sidebar Start ========== -->
             <div class="vertical-menu">
 
@@ -218,6 +218,19 @@
                                     <li><a href="UploadNotice">Upload Notice</a></li>
                                     <!-- <li><a href="#">Email Read</a></li> -->
                                     <!-- <li><a href="#">Email Compose</a></li> -->
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                    <i class="mdi mdi-account-group"></i>
+                                    <span>Queries</span>
+                                </a>
+                                <ul class="sub-menu" aria-expanded="false">
+                                    <li><a href="/revertStuQueries">Student Queries</a></li>
+                                    <li><a href="/revertGurQueries">Guardian Queries</a></li>
+                                    <!-- <li><a href="auth-recoverpw.html">Recover Password</a></li> -->
+                                    <!-- <li><a href="auth-lock-screen.html">Lock Screen</a></li> -->
                                 </ul>
                             </li>
                         </ul>

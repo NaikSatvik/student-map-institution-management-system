@@ -69,8 +69,7 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="mdi mdi-magnify"></i>
                             </button>
-                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0"
-                                aria-labelledby="page-header-search-dropdown">
+                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0" aria-labelledby="page-header-search-dropdown">
                     
                                 <form class="p-3">
                                     <div class="form-group m-0">
@@ -125,34 +124,30 @@
                             <!-- <li class="menu-title">Menu</li> -->
 
                             <li>
+                                <a style="color: #FCFBFC;" href="/friends" class="waves-effect">
+                                    <i class="mdi mdi-view-dashboard"></i><span class="badge badge-pill badge-success float-right"></span>
+                                    <span>Your Friends</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#" class="waves-effect">
+                                    <i class="mdi mdi-view-dashboard"></i><span class="badge badge-pill badge-success float-right"></span>
+                                    <span>Find Friends</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="/check-requests" class="waves-effect">
+                                    <i class="mdi mdi-view-dashboard"></i><span class="badge badge-pill badge-success float-right"></span>
+                                    <span>Pending Requests</span>
+                                </a>
+                            </li>
+
+                            <li>
                                 <a href="/indexStu" class="waves-effect">
                                     <i class="mdi mdi-view-dashboard"></i><span class="badge badge-pill badge-success float-right"></span>
-                                    <span>Student Dashboard</span>
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="javascript: void(0);" class="has-arrow waves-effect">
-                                    <i class="mdi mdi-email-multiple-outline"></i>
-                                    <span>Post Queries</span>
-                                </a>
-                                <ul class="sub-menu" aria-expanded="false">
-                                    <li><a href="/StudentQuery">Query Form</a></li>
-                                    <li><a href="/repliesStu">Responses</a></li>
-                                </ul>
-                            </li>
-
-                            <li>
-                                <a href="/getNotice" class="waves-effect">
-                                    <i class="mdi mdi-view-dashboard"></i><span class="badge badge-pill badge-success float-right"></span>
-                                    <span>Notices</span>
-                                </a>
-                            </li>
-
-                            <li>
-                                <a style="color: #FCFBFC;" href="/getResult" class="waves-effect">
-                                    <i class="mdi mdi-view-dashboard"></i><span class="badge badge-pill badge-success float-right"></span>
-                                    <span>Get Result</span>
+                                    <span>Go To Dashboard</span>
                                 </a>
                             </li>
 
@@ -219,113 +214,44 @@
 
                         <!-- start page title -->
                         <div class="row">
-                            <h1>View Your Result Here</h1>
-
+                            <h1>Your Friends</h1>
                         </div>     
                         <!-- end page title -->
 
-                        <c:forEach var="r" items="${result}">
                         <div class="row">
-                            <div class="col-lg-6">
+                            <div class="col-lg-12">
                                 <div class="card">
                                     <div class="card-body">
-                                            <form class="custom-validation" method="POST">
-                                                
-                                                <div class="form-group">
-                                                    <label>Name</label>
-                                                    <input type="text" class="form-control" value="${r.name}" readonly />
-                                                </div>
-                
-                                                <div class="form-group">
-                                                    <label>Email - ID</label>
-                                                    <input type="text" class="form-control" value="${sessionScope.mail}" readonly />
-                                                </div>
-                
-                                                <div class="form-group">
-                                                    <label>Enrollment Number</label>
-                                                    <input type="text" class="form-control" value="${r.enroll}" readonly />
-                                                </div>
-                                                
-                                                <div class="form-group">
-                                                    <label>Branch</label>
-                                                    <div>
-                                                        <input type="text" class="form-control" value="${r.branch}" readonly />
-                                                    </div>
-                                                </div>
-                                                
-                                                <div class="form-group">
-                                                    <label>Year</label>
-                                                    <div>
-                                                        <input type="text" class="form-control" value="${r.year}" readonly />
-                                                    </div>
-                                                </div>
-                
-                                                <div class="form-group">
-                                                    <label>Semester</label>
-                                                    <div>
-                                                        <input type="text" class="form-control" value="${r.semester}" readonly />
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label>IP</label>
-                                                    <div>
-                                                        <input type="text" class="form-control" value="${r.ip}" readonly />
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label>ESFP-I</label>
-                                                    <div>
-                                                        <input type="text" class="form-control" value="${r.esfpi}" readonly />
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label>DE</label>
-                                                    <div>
-                                                        <input type="text" class="form-control" value="${r.de}" readonly />
-                                                    </div>
-                                                </div>
-                                                
-                                                <div class="form-group">
-                                                    <label>BE</label>
-                                                    <div>
-                                                        <input type="text" class="form-control" value="${r.be}" readonly />
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label>Calculus</label>
-                                                    <div>
-                                                        <input type="text" class="form-control" value="${r.calculus}" readonly />
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label>SGPA</label>
-                                                    <div>
-                                                        <input type="text" class="form-control" value="${r.sgpa}" readonly />
-                                                    </div>
-                                                </div>
-                                                <!-- <div class="form-group mb-0">
-                                                    <div>
-                                                        <button type="submit" class="btn btn-primary waves-effect waves-light mr-1">
-                                                            Save
-                                                        </button>
-                                                    </div>
-                                                </div> -->
-                                            </form>
+                                        <div class="table-responsive">
+                                            <table style="overflow: hidden;" class="table table-centered table-nowrap mb-0" id="example" class="display">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">ID</th>
+                                                        <th scope="col">Student Name</th>
+                                                        <th scope="col">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <c:forEach var="a" items="${acceptlist}">
+                                                        <tr>
+                                                            <td class="nr3">${a.id}</td>
+                                                            <td class="nr4">${a.sEmail}</td>
+                                                            <td class="nr5"><button type="button" class="btn btn-primary waves-effect waves-light">View Profile</button></td>
+                                                        </tr>
+                                                    </c:forEach>
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        </c:forEach>
                         <!-- end row -->
 
                         <div class="row">
-                            
+                            <c:if test="${not empty msg}">
+                                <div><h2><script>alert("Your request has been sent successfully !!")</script></h2></div>
+                            </c:if>
                         </div>
                         <!-- end row -->
 

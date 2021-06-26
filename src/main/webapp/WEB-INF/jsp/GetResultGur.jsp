@@ -101,7 +101,7 @@
                             <div class="dropdown-menu dropdown-menu-right">
                                 <!-- item-->
                                 <a class="dropdown-item" href="/sprofile"><i class="mdi mdi-face-profile font-size-16 align-middle mr-1"></i> Profile</a>
-                                <a class="dropdown-item" href="/find-friends"><i class="mdi mdi-credit-card-outline font-size-16 align-middle mr-1"></i> Find Friends</a>
+                                <!-- <a class="dropdown-item" href="/find-friends"><i class="mdi mdi-credit-card-outline font-size-16 align-middle mr-1"></i> Find Friends</a> -->
                                 <!-- <a class="dropdown-item" href="#"><i class="mdi mdi-account-settings font-size-16 align-middle mr-1"></i> Settings</a> -->
                                 <!-- <a class="dropdown-item" href="#"><i class="mdi mdi-lock font-size-16 align-middle mr-1"></i> Lock screen</a> -->
                                 <div class="dropdown-divider"></div>
@@ -125,34 +125,34 @@
                             <!-- <li class="menu-title">Menu</li> -->
 
                             <li>
-                                <a href="/indexStu" class="waves-effect">
+                                <a href="/indexGur" class="waves-effect">
                                     <i class="mdi mdi-view-dashboard"></i><span class="badge badge-pill badge-success float-right"></span>
-                                    <span>Student Dashboard</span>
+                                    <span>Guardian Dashboard</span>
                                 </a>
                             </li>
-
+                            
                             <li>
                                 <a href="javascript: void(0);" class="has-arrow waves-effect">
                                     <i class="mdi mdi-email-multiple-outline"></i>
                                     <span>Post Queries</span>
                                 </a>
                                 <ul class="sub-menu" aria-expanded="false">
-                                    <li><a href="/StudentQuery">Query Form</a></li>
-                                    <li><a href="/repliesStu">Responses</a></li>
+                                    <li><a href="/queryform">Query Form</a></li>
+                                    <li><a href="/replies">Responses</a></li>
                                 </ul>
                             </li>
 
                             <li>
-                                <a href="/getNotice" class="waves-effect">
+                                <a href="/getNoticeGur" class="waves-effect">
                                     <i class="mdi mdi-view-dashboard"></i><span class="badge badge-pill badge-success float-right"></span>
                                     <span>Notices</span>
                                 </a>
                             </li>
 
                             <li>
-                                <a style="color: #FCFBFC;" href="/getResult" class="waves-effect">
+                                <a style="color: #FCFBFC;" href="/getResultGur" class="waves-effect">
                                     <i class="mdi mdi-view-dashboard"></i><span class="badge badge-pill badge-success float-right"></span>
-                                    <span>Get Result</span>
+                                    <span>Student's Result</span>
                                 </a>
                             </li>
 

@@ -7,7 +7,6 @@ import javax.persistence.Table;
 @Entity
 @Table(name="notice")
 
-
 public class Notice {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -80,8 +79,6 @@ public class Notice {
 
 
     public Notice() {
-
-
     }
 
     public Notice(String facName, String facEmail, String sub, String content, String expDate, String expTime) {
@@ -91,8 +88,5 @@ public class Notice {
         this.content=content;
         this.expDate=expDate;
         this.expTime=expTime;
-
-
     }
-    
 }

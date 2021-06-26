@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface NoticeRepository extends JpaRepository<Notice,Long> {
-
     @Query("SELECT n FROM Notice n WHERE n.expDate >= :expDate")
     List<Notice> findByExpDate(String expDate);
 }
