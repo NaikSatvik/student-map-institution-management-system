@@ -1,11 +1,11 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!doctype html>
+        <!doctype html>
         <html lang="en">
 
         <head>
             <meta charset="utf-8" />
-            <title>Gaurdian | Dashboard</title>
+            <title>Faculty | Dashboard</title>
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
             <meta content="Themesdesign" name="author" />
@@ -22,7 +22,6 @@
             <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
             <!-- App Css-->
             <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" />
-
         </head>
 
         <body data-sidebar="dark">
@@ -109,12 +108,13 @@
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-right">
                                     <!-- item-->
-                                    <a class="dropdown-item" href="/gprofile"><i class="mdi mdi-face-profile font-size-16 align-middle mr-1"></i> Profile</a>
+                                    <!-- <a class="dropdown-item" href="/profile"><i class="mdi mdi-face-profile font-size-16 align-middle mr-1"></i> Profile</a> -->
                                     <!-- <a class="dropdown-item" href="#"><i class="mdi mdi-credit-card-outline font-size-16 align-middle mr-1"></i> Billing</a> -->
                                     <!-- <a class="dropdown-item" href="#"><i class="mdi mdi-account-settings font-size-16 align-middle mr-1"></i> Settings</a> -->
                                     <!-- <a class="dropdown-item" href="#"><i class="mdi mdi-lock font-size-16 align-middle mr-1"></i> Lock screen</a> -->
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="/logout"><i class="mdi mdi-logout font-size-16 align-middle mr-1"></i> Logout</a>
+                                    <a class="dropdown-item" href="/logout"><i
+                                            class="mdi mdi-logout font-size-16 align-middle mr-1"></i> Logout</a>
                                 </div>
                             </div>
                         </div>
@@ -125,49 +125,23 @@
                 <div class="vertical-menu">
 
                     <div data-simplebar class="h-100">
-    
+
                         <!--- Sidemenu -->
                         <div id="sidebar-menu">
                             <!-- Left Menu Start -->
                             <ul class="metismenu list-unstyled" id="side-menu">
                                 <!-- <li class="menu-title">Menu</li> -->
-    
-                                <li>
-                                    <a href="/indexGur" class="waves-effect">
-                                        <i class="mdi mdi-view-dashboard"></i><span class="badge badge-pill badge-success float-right"></span>
-                                        <span>Guardian Dashboard</span>
-                                    </a>
-                                </li>
-                                
-                                <li>
-                                    <a style="color: #FCFBFC;" href="javascript: void(0);" class="has-arrow waves-effect">
-                                        <i class="mdi mdi-email-multiple-outline"></i>
-                                        <span>Post Queries</span>
-                                    </a>
-                                    <ul class="sub-menu" aria-expanded="false">
-                                        <li><a href="/queryform">Query Form</a></li>
-                                        <li><a style="color: #FCFBFC;" href="/replies">Responses</a></li>
-                                    </ul>
-                                </li>
 
                                 <li>
-                                    <a href="/getNoticeGur" class="waves-effect">
-                                        <i class="mdi mdi-view-dashboard"></i><span class="badge badge-pill badge-success float-right"></span>
-                                        <span>Notices</span>
+                                    <a href="#" class=" waves-effect">
+                                        <i class="mdi mdi-calendar-month"></i>
+                                        <span style="color: #FCFBFC;">Complete Your Profile</span>
                                     </a>
                                 </li>
-
-                                <li>
-                                    <a href="/getResultGur" class="waves-effect">
-                                        <i class="mdi mdi-view-dashboard"></i><span class="badge badge-pill badge-success float-right"></span>
-                                        <span>Student's Result</span>
-                                    </a>
-                                </li>
-            
                             </ul>
-    
+
                             <div class="sidebar-section mt-5 mb-3">
-                                
+
                             </div>
                         </div>
                         <!-- Sidebar -->
@@ -186,26 +160,83 @@
                             <!-- start page title -->
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <h4>Queries/Responses Logs</h4>
+                                    <h1>Complete Your Profile</h1>
                                 </div>
                             </div>
                             <!-- end page title -->
 
-                            <c:forEach var="n" items="${getResponses}">
-                                <div class="row">
-                                    <div class="card text-white" style="background-color: #333; border-color: #333; width: 95%;">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="card">
                                         <div class="card-body">
-                                            <h5 style="color: yellow;">${n.gurQueryContent}</h5>
-                                            <p class="card-text">${n.reply}</p>
+                                            <form class="custom-validation" method="POST" action="/save-GurProfile">
+                                                <div class="form-group">
+                                                    <label>First Name</label>
+                                                    <input type="text" class="form-control" name="gurFname"/>
+                                                </div>
+    
+                                                <div class="form-group">
+                                                    <label>Middle Name</label>
+                                                    <div>
+                                                        <input type="text" class="form-control" name="gurMname"/>
+                                                    </div>
+                                                </div>
+    
+                                                <div class="form-group">
+                                                    <label>Last Name</label>
+                                                    <div>
+                                                        <input type="text" class="form-control" name="gurLname"/>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Contact No.</label>
+                                                    <div>
+                                                        <input type="text" class="form-control" name="gurMobile" />
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Email ID</label>
+                                                    <div>
+                                                        <input type="text" class="form-control" value="${sessionScope.mail}" name="gurEmail" readonly/>
+                                                    </div>
+                                                </div>
+    
+                                                <div class="form-group">
+                                                    <label>Address</label>
+                                                    <div>
+                                                        <textarea name="gurAddress" class="form-control" rows="5"></textarea>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="form-group">
+                                                    <label>Pincode</label>
+                                                    <div>
+                                                        <input type="text" class="form-control" name="gurPincode" />
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="form-group">
+                                                    <label>Student Email ID</label>
+                                                    <div>
+                                                        <input type="text" class="form-control" name="gurStudentmail"/>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="form-group mb-0">
+                                                    <div>
+                                                        <button type="submit" class="btn btn-primary waves-effect waves-light mr-1">
+                                                            Save
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
-                            </c:forEach>
+                            </div>
+                            <!-- end row -->
 
                             <div class="row">
-                                <c:if test="${not empty msg}">
-                                    <div><h2><script>alert("${msg}")</script></h2></div>
-                                </c:if>
                             </div>
                             <!-- end row -->
 

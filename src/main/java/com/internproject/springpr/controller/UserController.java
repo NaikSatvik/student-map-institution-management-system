@@ -2,12 +2,12 @@ package com.internproject.springpr.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
-
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date; 
 import com.internproject.springpr.domain.Faculty;
+import com.internproject.springpr.domain.Guardian;
 import com.internproject.springpr.domain.GurQuery;
 import com.internproject.springpr.domain.Notice;
 import com.internproject.springpr.domain.SignUp;
@@ -23,7 +23,6 @@ import com.internproject.springpr.repository.SignUpRepository;
 import com.internproject.springpr.repository.StudentQueryRepository;
 import com.internproject.springpr.repository.UserRepository;
 import com.internproject.springpr.repository.followRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -137,9 +136,15 @@ public class UserController {
             } else if (x.equals("faculty")) {
                 if (signupRepo.findByRoleAndMailidAndPass(role, mail, pass) != null) {
                     //System.out.println(facRepo.count(mail));
+                    System.out.println(pass);
                     if (facRepo.count(mail) == null) {
-                        model.addAttribute("mail", mail);
-                        return "FacProfile";
+                        if (pass.equals("GNUFAC")) {
+                            model.addAttribute("mail", mail);
+                            return "ResetFacPass";
+                        } else {
+                            model.addAttribute("mail", mail);
+                            return "FacProfile";
+                        }
                     } else {
                         model.addAttribute("mail", mail);
                         return "indexFac";
@@ -150,8 +155,13 @@ public class UserController {
                 }
             } else if (x.equals("guardian")) {
                 if (signupRepo.findByRoleAndMailidAndPass(role, mail, pass) != null) {
-                    model.addAttribute("mail", mail);
-                    return "indexGur";
+                    if (gurRepo.count(mail) == null) {
+                        model.addAttribute("mail", mail);
+                        return "GurProfile";
+                    } else {
+                        model.addAttribute("mail", mail);
+                        return "indexGur";
+                    }
                 } else {
                     model.addAttribute("error", "You have entered incorrect credentials. Please try again.");
                     return "login";
@@ -161,6 +171,22 @@ public class UserController {
             }
         }
         return "login";
+    }
+
+    @Transactional
+    @RequestMapping("/upFacPass")
+    public String updateFacPass(@ModelAttribute("mail") String mail,@RequestParam("pass") String pass,@RequestParam("confpass") String confpass,Model model) {
+        String pass1 = pass;
+        String pass2 = confpass;
+
+        if (pass1.equals(pass2)) {
+            signupRepo.updateFacPass(mail, pass);
+            model.addAttribute("error", "Your Password has been changed successfully. Please Login Again");
+            return "login";
+        } else {
+            model.addAttribute("error", "Your password dosen't matched. Please try to change your password again.");
+            return "ResetFacPass";
+        }
     }
 
     @RequestMapping("/logout")
@@ -470,6 +496,32 @@ public class UserController {
     public String redirectToGurQueryResponse(@ModelAttribute("mail") String mail, Model model) {
         model.addAttribute("getResponses", gurQueryRepo.findByGurEmail(mail));
         return "GurQueryResponses";
+    }
+
+    @RequestMapping("/gprofile")
+    public String redirectToGProfile(@ModelAttribute("mail") String mail,Model model) {
+        model.addAttribute("GurProfile", gurRepo.findByGurEmail(mail));
+        return "GurProfileDash";
+    }
+
+    @RequestMapping("/editGurProfile")
+    public String redirectToGeditProfile(@ModelAttribute("mail") String mail,Model model) {
+        model.addAttribute("GurProfile", gurRepo.findByGurEmail(mail));
+        return "EditGurProfile";
+    }
+
+    @Transactional
+    @RequestMapping("/updateGurProfile")
+    public String updateGuardian(@ModelAttribute("mail") String mail,@RequestParam("gurMobile") String gurMobile,@RequestParam("gurAddress") String gurAddress,@RequestParam("gurPincode") String gurPincode, Model model) {
+        gurRepo.updateGurProfile(mail, gurMobile, gurAddress, gurPincode);
+        return "indexGur";
+    }
+
+    @RequestMapping("/save-GurProfile")
+    public String saveGurProfile(Model model,Guardian guardian) {
+        gurRepo.save(guardian);
+        model.addAttribute("error", "You have completed your profile. Kindly Login Again.");
+        return "login";
     }
 
     // Guardian Module End

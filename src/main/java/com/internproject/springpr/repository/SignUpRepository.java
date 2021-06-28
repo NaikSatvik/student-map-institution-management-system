@@ -16,4 +16,8 @@ public interface SignUpRepository extends JpaRepository<SignUp,Long> {
     @Modifying
     @Query("UPDATE SignUp s SET s.username = :username, s.pass = :pass WHERE s.mailid = :mailid AND s.stumailid = :stumailid")
     int updateGurEntry(@Param("mailid") String mailid, @Param("stumailid") String stumailid, @Param("username") String username, @Param("pass") String pass);
+
+    @Modifying
+    @Query("UPDATE SignUp s SET s.pass = :pass WHERE s.mailid = :mailid")
+    int updateFacPass(@Param("mailid") String mailid,@Param("pass") String pass);
 }

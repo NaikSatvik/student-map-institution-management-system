@@ -1,8 +1,10 @@
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>New faculty</title>
+        <title>Guardian | Dashboard</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
         <meta content="Themesdesign" name="author" />
@@ -93,12 +95,12 @@
                             <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <img class="rounded-circle header-profile-user" src="assets/images/online.png" alt="Header Avatar" sizes="20">
-                                <span class="d-none d-sm-inline-block ml-1">${sessionScope.mail}</span>
+                                <span class="d-none d-sm-inline-block ml-1">${sessionScope.mail}</s>
                                 <i class="mdi mdi-chevron-down d-none d-sm-inline-block"></i>
                             </button>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <!-- item-->
-                                <!-- <a class="dropdown-item" href="/profile"><i class="mdi mdi-face-profile font-size-16 align-middle mr-1"></i> Profile</a> -->
+                                <a class="dropdown-item" href="/sprofile"><i class="mdi mdi-face-profile font-size-16 align-middle mr-1"></i> Profile</a>
                                 <!-- <a class="dropdown-item" href="#"><i class="mdi mdi-credit-card-outline font-size-16 align-middle mr-1"></i> Billing</a> -->
                                 <!-- <a class="dropdown-item" href="#"><i class="mdi mdi-account-settings font-size-16 align-middle mr-1"></i> Settings</a> -->
                                 <!-- <a class="dropdown-item" href="#"><i class="mdi mdi-lock font-size-16 align-middle mr-1"></i> Lock screen</a> -->
@@ -123,82 +125,25 @@
                             <!-- <li class="menu-title">Menu</li> -->
 
                             <li>
-                                <a href="/indexAdmin" class="waves-effect">
+                                <a href="/gprofile" class=" waves-effect">
+                                    <i class="mdi mdi-calendar-month"></i>
+                                    <span>Your Profile</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a style="color: #FCFBFC;" href="#" class=" waves-effect">
+                                    <i class="mdi mdi-calendar-month"></i>
+                                    <span>Edit Your Profile</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="/indexGur" class="waves-effect">
                                     <i class="mdi mdi-view-dashboard"></i><span class="badge badge-pill badge-success float-right"></span>
-                                    <span>Admin Dashboard</span>
+                                    <span>Go To Dashboard</span>
                                 </a>
                             </li>
-
-                            <li>
-                                <a href="/goto-viewStudents" class=" waves-effect">
-                                    <i class="mdi mdi-calendar-month"></i>
-                                    <span>Student Details</span>
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="/goto-viewfaculty" class=" waves-effect">
-                                    <i class="mdi mdi-calendar-month"></i>
-                                    <span> Faculty Details</span>
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="/goto-viewparent" class=" waves-effect">
-                                    <i class="mdi mdi-calendar-month"></i>
-                                    <span> Parent Details</span>
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="/save-facpassandid" class=" waves-effect">
-                                    <i class="mdi mdi-calendar-month"></i>
-                                    <span>Generate Faculty Details </span>
-                                </a>
-                            </li>
-
-                            <!-- <li>
-                                <a href="javascript: void(0);" class="has-arrow waves-effect">
-                                    <i class="mdi mdi-email-multiple-outline"></i>
-                                    <span>Email</span>
-                                </a>
-                                <ul class="sub-menu" aria-expanded="false">
-                                    <li><a href="email-inbox.html">Inbox</a></li>
-                                    <li><a href="email-read.html">Email Read</a></li>
-                                    <li><a href="email-compose.html">Email Compose</a></li>
-                                </ul>
-                            </li>
-
-                            <li>
-                                <a href="javascript: void(0);" class="has-arrow waves-effect">
-                                    <i class="mdi mdi-account-group"></i>
-                                    <span>Authentication</span>
-                                </a>
-                                <ul class="sub-menu" aria-expanded="false">
-                                    <li><a href="auth-login.html">Login</a></li>
-                                    <li><a href="auth-register.html">Register</a></li>
-                                    <li><a href="auth-recoverpw.html">Recover Password</a></li>
-                                    <li><a href="auth-lock-screen.html">Lock Screen</a></li>
-                                </ul>
-                            </li>
-
-                            <li>
-                                <a href="javascript: void(0);" class="has-arrow waves-effect">
-                                    <i class="mdi mdi-google-pages"></i>
-                                    <span>Pages</span>
-                                </a>
-                                <ul class="sub-menu" aria-expanded="false">
-                                    <li><a href="pages-starter.html">Starter Page</a></li>
-                                    <li><a href="pages-maintenance.html">Maintenance</a></li>
-                                    <li><a href="pages-comingsoon.html">Coming Soon</a></li>
-                                    <li><a href="pages-timeline.html">Timeline</a></li>
-                                    <li><a href="pages-gallery.html">Gallery</a></li>
-                                    <li><a href="pages-faqs.html">FAQs</a></li>
-                                    <li><a href="pages-pricing.html">Pricing</a></li>
-                                    <li><a href="pages-404.html">Error 404</a></li>
-                                    <li><a href="pages-500.html">Error 500</a></li>
-                                </ul>
-                            </li> -->
                         </ul>
 
                         <div class="sidebar-section mt-5 mb-3">
@@ -218,43 +163,72 @@
                 <div class="page-content">
                     <div class="container-fluid">
 
+                        <!-- start page title -->
                         <div class="row">
                             <div class="col-lg-6">
-                                <h1>Faculty Passowrd and Email-Id generation </h1>
+                                <h1>Edit Your Profile</h1>
                             </div>
-                        </div>
+                        </div>     
+                        <!-- end page title -->
 
-                        <!-- start page title -->
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="card">
                                     <div class="card-body">
-                                        
-                                        <form class="custom-validation" action="/save-facpassandid">
+                                        <form class="custom-validation" method="POST" action="/updateGurProfile">
+                                            <c:forEach var="g" items="${GurProfile}">
                                             <div class="form-group">
-                                                <label>Role</label>
-                                                <input type="text" class="form-control" name="role" value="faculty" readonly/>
+                                                <label>First Name</label>
+                                                <input type="text" class="form-control" value="${g.gurFname}" readonly/>
                                             </div>
+
                                             <div class="form-group">
-                                                <label>Username</label>
+                                                <label>Middle Name</label>
                                                 <div>
-                                                    <input type="text" class="form-control" name="username" />
+                                                    <input type="text" class="form-control" value="${g.gurMname}" readonly />
                                                 </div>
                                             </div>
 
                                             <div class="form-group">
-                                                <label>Email-ID</label>
+                                                <label>Last Name</label>
                                                 <div>
-                                                    <input type="text" class="form-control" name="mailid" />
+                                                    <input type="text" class="form-control" value="${g.gurLname}" readonly />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Contact No.</label>
+                                                <div>
+                                                    <input type="text" class="form-control" value="${g.gurMobile}" name="gurMobile" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Email ID</label>
+                                                <div>
+                                                    <input type="text" class="form-control" value="${g.gurEmail}" readonly/>
                                                 </div>
                                             </div>
 
                                             <div class="form-group">
-                                                <label>Password</label>
+                                                <label>Address</label>
                                                 <div>
-                                                    <input type="password" class="form-control" name="pass" value="GNUFAC" readonly />
+                                                    <textarea name="gurAddress" class="form-control" rows="5">${g.gurAddress}</textarea>
                                                 </div>
                                             </div>
+                                            
+                                            <div class="form-group">
+                                                <label>Pincode</label>
+                                                <div>
+                                                    <input type="text" class="form-control" value="${g.gurPincode}" name="gurPincode" />
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <label>Student Email ID</label>
+                                                <div>
+                                                    <input type="text" class="form-control" value="${g.gurStudentmail}" readonly />
+                                                </div>
+                                            </div>
+                                            
                                             <div class="form-group mb-0">
                                                 <div>
                                                     <button type="submit" class="btn btn-primary waves-effect waves-light mr-1">
@@ -262,15 +236,11 @@
                                                     </button>
                                                 </div>
                                             </div>
+                                        </c:forEach>
                                         </form>
                                     </div>
                                 </div>
                             </div>
-                        </div>  
-                        <!-- end page title -->
-
-                        <div class="row">
-    
                         </div>
                         <!-- end row -->
 
@@ -301,21 +271,28 @@
 
         <!-- Right Sidebar -->
         <!-- /Right-bar -->
+
         <!-- Right bar overlay-->
         <!-- <div class="rightbar-overlay"></div> -->
+
         <!-- JAVASCRIPT -->
         <script src="assets/libs/jquery/jquery.min.js"></script>
         <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
         <script src="assets/libs/metismenu/metisMenu.min.js"></script>
         <script src="assets/libs/simplebar/simplebar.min.js"></script>
         <script src="assets/libs/node-waves/waves.min.js"></script>
+
         <!-- apexcharts -->
         <script src="assets/libs/apexcharts/apexcharts.min.js"></script>
+
         <script src="assets/libs/slick-slider/slick/slick.min.js"></script>
+
         <!-- Jq vector map -->
         <script src="assets/libs/jqvmap/jquery.vmap.min.js"></script>
         <script src="assets/libs/jqvmap/maps/jquery.vmap.usa.js"></script>
+
         <script src="assets/js/pages/dashboard.init.js"></script>
+
         <script src="assets/js/app.js"></script>
     </body>
 </html>

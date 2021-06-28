@@ -22,7 +22,6 @@
             <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
             <!-- App Css-->
             <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" />
-
         </head>
 
         <body data-sidebar="dark">
@@ -252,7 +251,6 @@
                             <!-- end row -->
 
                             <div class="row">
-
                             </div>
                             <!-- end row -->
 
