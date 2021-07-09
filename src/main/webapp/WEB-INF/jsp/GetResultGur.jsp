@@ -219,7 +219,7 @@
 
                         <!-- start page title -->
                         <div class="row">
-                            <h1>View Your Result Here</h1>
+                            <h1>View Your Student's Result Here</h1>
 
                         </div>     
                         <!-- end page title -->

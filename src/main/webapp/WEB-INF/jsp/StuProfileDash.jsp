@@ -176,7 +176,7 @@
                             <!-- start page title -->
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <h1>Complete Your Profile To Redirect to Dashboard</h1>
+                                    <h1>Your Profile</h1>
                                 </div>
                             </div>
                             <!-- end page title -->
